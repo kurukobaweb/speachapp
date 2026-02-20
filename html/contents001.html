@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>日本語スピーチ判定アプリアプリ｜練習</title>
+  <!-- 共通CSS -->
+  <link rel="stylesheet" href="../common/header.css">
+  <link rel="stylesheet" href="../common/sidebar.css">
+  <link rel="stylesheet" href="../common/bottom-nav.css">
+     <link rel="stylesheet" href="../css/home.css">
+    <link rel="stylesheet" href="../css/setting.css">
+
+<link rel="stylesheet" href="../css/style.css"><!-- 既存 -->
+<link rel="stylesheet" href="../css/contents001.css"><!-- 新規: 下のCSSをこのファイル名で -->
+
+<!-- ルビ・形態素解析（既存の script.js で使用） -->
+<script type="module" src="https://unpkg.com/wanakana"></script>
+<script type="module" src="https://cdn.jsdelivr.net/npm/kuromoji@0.1.2/build/kuromoji.min.js"></script>
+</head>
+<body>
+
+<!-- 共通ヘッダー -->
+<div id="siteHeader" data-header-src="../common/header.html"></div>
+
+  <!-- レイアウト -->
+  <div class="page-bg"></div>
+  <div class="home-layout">
+
+<!-- 共通サイドバー（PCのみ表示） -->
+<div id="siteSidebar" data-sidebar-src="../common/sidebar.html"></div>
+
+
+<main class="home-main">
+  <div class="page-inner">
+    <!-- カード -->
+    <section id="screen1" class="practice-card">
+      <!-- 見出し行 -->
+      <header class="pc-head">
+        <div class="pc-lv"><span>Lv:</span><strong id="pcLv">-</strong></div>
+        <div class="pc-no"><span>No:</span><strong id="pcNo">-</strong></div>
+      </header>
+
+      <!-- お題（script.js が #prompt と .question に流し込み） -->
+      <div class="pc-question-block">
+        <div id="prompt" class="pc-meta">
+          <!-- script.js が
+               <div class="level">初級</div>
+               <div class="sub">34</div>
+               <div class="type">二択</div>
+             を入れます（CSSで上のLv/Noへ反映） -->
+        </div>
+
+        <div class="pc-question">
+          <div class="question">ここにお題が表示されます。</div>
+          <p class="pc-tip">「どちらかに賛成」「理由」「エピソード」の３つを入れてスピーチ練習を行なってください。</p>
+        </div>
+      </div>
+
+      <!-- タイム表示 -->
+      <div class="pc-time">
+        <div class="pc-time-label">TIME</div>
+        <div id="timer" class="pc-time-value">0秒</div>
+      </div>
+
+      <!-- プログレスバー -->
+      <div id="bar" class="pc-bar"><div id="barInner"></div></div>
+
+      <!-- カウントダウン演出 -->
+      <div id="countdown-overlay"><div id="countdown"></div></div>
+
+      <!-- アクション -->
+      <div class="pc-actions">
+        <!-- START ボタン（初期表示）。disabledになるとCSSで非表示 -->
+        <button id="btnStart" class="btn-cta start" type="button">
+          <span>START</span>
+        </button>
+
+        <!-- STOP ボタン（録音中に表示）。disabledの間はCSSで非表示 -->
+        <button id="btnStop" class="btn-cta stop" type="button" disabled aria-disabled="true">
+          <!-- ご指定の Bootstrap Icons マイク（白塗りでも映えるように丸内に表示） -->
+          <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" fill="currentColor" class="bi bi-mic-fill" viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M5 3a3 3 0 0 1 6 0v5a3 3 0 0 1-6 0z"/>
+            <path d="M3.5 6.5A.5.5 0 0 1 4 7v1a4 4 0 0 0 8 0V7a.5.5 0 0 1 1 0v1a5 5 0 0 1-4.5 4.975V15h3a.5.5 0 0 1 0 1h-7a.5.5 0 0 1 0-1h3v-2.025A5 5 0 0 1 3 8V7a.5.5 0 0 1 .5-.5"/>
+          </svg>
+        </button>
+
+        <!-- RESULT（判定）ボタン。script.js で enable にされたら押せる -->
+        <button id="btnJudge" class="btn-cta result" type="button" disabled aria-disabled="true">
+          <span>RESULT</span>
+        </button>
+      </div>
+
+      <!-- 文字起こし（録音中に表示・既存ID） -->
+      <div id="transcriptContainer" class="pc-transcript" style="display:none;">
+        <h3>文字起こし</h3>
+        <div id="transcript" class="transcript"></div>
+      </div>
+      <input id="speechInput" type="text" style="display:none;" />
+    </section>
+
+    <!-- 結果カード（既存のscreen2をカード化） -->
+      <section id="screen2" class="result-card" style="display:none;">
+        <header class="rc-head">
+        <h2>判定結果</h2>
+      </header>
+
+      <div class="rc-body">
+        <div class="rc-row"><span>時間</span><strong><span id="resTime">0</span>秒</strong></div>
+        <div class="rc-row"><span>文字数</span><strong id="resChars">0</strong></div>
+        <div class="rc-row big"><span>判定</span><strong id="resScore">0</strong></div>
+
+        <div class="pc-bar small" id="bar2"><div id="barInner2"></div></div>
+        <div class="rc-text">
+          <div id="resultPrompt">ここに文字起こしされたテキストが入ります。</div>
+        </div>
+
+        <div class="rc-actions">
+            <button id="btnNext"  class="btn-next"  type="button">NEXT</button>
+
+          <button id="btnRetry" class="btn-retry" type="button">RETRY</button>
+        </div>
+      </div>
+    </section>
+  </div>
+
+</main>
+</div>
+<!-- SPボトムナビ（スマホのみ表示） -->
+<div id="siteBottomNav" data-bottom-src="../common/bottom-nav.html"></div>
+<script>window.API_BASE = `${location.protocol}//${location.hostname}:8200`;</script>
+
+<script type="module" src="../js/config.js"></script>
+<script type="module" src="../js/api.js"></script>
+
+<!-- 既存JS（設定モーダル） -->
+<script type="module" src="../js/setting.js" defer></script>
+<!-- 共通ローダー -->
+<script type="module" src="../common/header.js" defer></script>
+<script type="module" src="../common/sidebar.js" defer></script>
+<script type="module" src="../common/bottom-nav-loader.js" defer></script>
+
+<!-- 録音ロジック（既存） -->
+<script type="module" src="../js/script.js" defer></script>
+
+<!-- Lv / No 表示を #prompt から拾ってヘッダに反映（軽い補助） -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const syncHeader = () => {
+    const lv = document.querySelector('#prompt .level')?.textContent?.trim() || '-';
+    const no = document.querySelector('#prompt .sub')?.textContent?.trim()   || '-';
+    document.getElementById('pcLv').textContent = lv;
+    document.getElementById('pcNo').textContent = no;
+  };
+  const obs = new MutationObserver(syncHeader);
+  obs.observe(document.getElementById('prompt'), { childList:true, subtree:true, characterData:true });
+});
+</script>
+
+</body>
+</html>

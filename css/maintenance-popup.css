@@ -1,0 +1,92 @@
+/* css/maintenance-popup.css */
+
+.maint-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: none; /* JSで表示 */
+}
+
+.maint-modal.is-open {
+  display: block;
+}
+
+.maint-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, .55);
+}
+
+.maint-modal__panel {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: min(560px, calc(100% - 32px));
+  transform: translate(-50%, -50%);
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 20px 60px rgba(0,0,0,.25);
+  padding: 18px 18px 14px;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans JP", sans-serif;
+}
+
+.maint-modal__title {
+  margin: 0 0 10px;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: .02em;
+}
+
+.maint-modal__body {
+  margin: 0 0 14px;
+  font-size: 14px;
+  line-height: 1.7;
+  color: #111;
+  white-space: pre-wrap;
+}
+
+.maint-modal__note {
+  margin: 0 0 14px;
+  font-size: 12px;
+  line-height: 1.6;
+  color: #444;
+  word-break: break-word;
+}
+
+.maint-modal__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.maint-modal__btn {
+  border: none;
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.maint-modal__btn--primary {
+  background: #111;
+  color: #fff;
+}
+
+.maint-modal__btn--ghost {
+  background: #f3f3f3;
+  color: #111;
+}
+
+.maint-modal__close {
+  position: absolute;
+  right: 10px;
+  top: 8px;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 20px;
+  line-height: 34px;
+}

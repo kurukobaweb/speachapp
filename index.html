@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>日本語スピーチ判定アプリ｜ホーム</title>
+
+  <!-- 共通ヘッダーのスタイル -->
+<link rel="stylesheet" href="common/header.css"
+      data-pagespeed-no-transform>
+<link rel="stylesheet" href="common/sidebar.css"
+      data-pagespeed-no-transform>
+<link rel="stylesheet" href="css/home.css"
+      data-pagespeed-no-transform>
+  <link rel="stylesheet" href="common/bottom-nav.css">
+
+  <!-- このページ専用スタイル -->
+<link rel="stylesheet" href="css/home.css"
+      data-pagespeed-no-transform>    <link rel="stylesheet" href="css/themes.css">
+    <link rel="stylesheet" href="css/setting.css">
+
+    <link rel="stylesheet" href="css/style.css">
+<script type="module">
+  import { api } from "./js/api.js";   // あなたの実ファイルのパスに合わせる
+</script>
+<!-- ルビ・形態素解析（既存の script.js で使用） -->
+<script type="module" src="https://unpkg.com/wanakana"></script>
+<script type="module" src="https://cdn.jsdelivr.net/npm/kuromoji@0.1.2/build/kuromoji.min.js"></script>
+
+</head>
+<body>
+  <!-- 共通ヘッダー -->
+  <div id="siteHeader"  data-header-src="/common/header.html"></div>
+
+
+
+  <!-- レイアウト -->
+  <div class="page-bg"></div>
+  <div class="home-layout">
+    <!-- サイドバー（PC表示） -->
+  <div id="siteSidebar" data-sidebar-src="/common/sidebar.html"></div>
+
+    <!-- メイン -->
+    <main class="home-main">
+      <!-- ヒーローカード -->
+      <section class="card hero">
+        <img src="images/logo_speech.png" data-pagespeed-no-transform loading="lazy" decoding="async" alt="" class="hero-mark">
+        <p class="hero-supervision">監修</p>
+        <h2 class="hero-title">日本語スピーチ判定アプリ</h2>
+        <button id="btnHeroStart" class="btn-hero">START</button>
+      </section>
+
+      <div class="home-grid">
+        <!-- テーマ一覧 -->
+<section class="card themes">
+  <h3 class="card-title">テーマ一覧</h3>
+
+  <div class="filterbar">
+<select id="filterLevel" data-filter="level"><option value="">全てのLV</option></select>
+<select id="filterType"  data-filter="type"><option value="">全てのタイプ</option></select>
+
+    <button id="filterReset" type="button" class="btn btn-outline">リセット</button>
+  </div>
+
+  <div class="table-wrap">
+    <table class="theme-table finder-table">
+      <thead>
+        <tr><th>LV</th><th>No.</th><th>タイプ</th><th>お題</th></tr>
+      </thead>
+      <tbody id="promptList"></tbody>
+    </table>
+  </div>
+
+  <div id="pagination" style="margin:10px 0; text-align:center;"></div>
+</section>
+
+<!-- ↓ menu.html から必要部分をそのまま移植（IDは同一） -->
+<div id="promptListModal" style="display:none;">
+  <div id="promptListBox" class="card" style="max-width:980px; margin:auto; padding:16px; position:relative;">
+    <h2 style="text-align:center; margin:8px 0 12px;">テーマ一覧</h2>
+    <button id="closePromptList" class="modal-close-x" aria-label="閉じる"
+            style="position:absolute; right:12px; top:10px; font-size:20px; background:transparent; border:0;">&times;</button>
+
+    <div class="filterbar" style="display:flex; gap:10px; align-items:center; justify-content:center; margin:8px 0 12px;">
+      <select id="filterLevel"><option value="">全てのLV</option></select>
+      <select id="filterType"><option value="">全てのタイプ</option></select>
+      <button id="filterReset" type="button" class="btn btn-outline" style="white-space:nowrap;">リセット</button>
+    </div>
+
+    <div class="table-wrap">
+      <table class="finder-table theme-table" style="width:100%;">
+        <thead>
+          <tr><th>LV</th><th>No.</th><th>タイプ</th><th>お題</th></tr>
+        </thead>
+        <tbody id="promptList"></tbody>
+      </table>
+    </div>
+
+    <div id="pagination" style="margin:10px 0; text-align:center;"></div>
+  </div>
+</div>
+        <!-- 設定
+ 右側の設定カード（以前の select 群は削除）
+<aside class="card settings">
+  <h3 class="card-title">設定</h3>
+
+   現在値サマリー（保存後に更新
+  <div class="setting-summary">
+    <div><label>LV</label><span id="sum-level">初級</span></div>
+    <div><label>出題方式</label><span id="sum-mode">ランダム</span></div>
+    <div><label>最大時間</label><span id="sum-max">60秒</span></div>
+    <div><label>時間表示</label><span id="sum-timer">カウントアップ</span></div>
+    <div><label>強制終了</label><span id="sum-force">あり</span></div>
+    <div><label>文字起こし</label><span id="sum-trans">あり</span></div>
+  </div>
+
+  <div class="setting-actions">
+    <button class="btn-setting btn-save">設定を開く</button>
+  </div>
+</aside>
+    </main>
+  </div> -->
+
+  <!-- ボトムメニュー（SPのみ表示） -->
+<div id="siteBottomNav" data-bottom-src="/common/bottom-nav.html"></div>
+<script>window.API_BASE = `${location.protocol}//${location.hostname}:8200`;</script>
+
+<script type="module" src="/js/config.js"></script>
+<script type="module" src="/js/login.js"></script>
+
+  <!-- ヘッダー読込＆ページ用JS -->
+  <script type="module" src="common/header.js" defer></script>
+    <script type="module" src="common/sidebar.js" defer></script>
+    <script type="module" src="common/bottom-nav-loader.js" defer></script>
+<script type="module" src="common/filter-options.js" defer></script>
+<script src="js/maintenance-popup.js"></script>
+
+<script type="module" src="js/setting.js" defer></script>
+<script type="module" src="js/home-themes.js" defer></script>
+  <script type="module" src="js/home.js" defer></script>
+  <script type="module" src="js/script.js" defer></script>
+<!--<script type="module" src="/common/partials.js" defer
+        data-pagespeed-no-defer data-pagespeed-no-transform></script>-->
+<script src="js/paywall.js"></script>
+<script type="module">
+  import api from "/js/api.js";
+  document.addEventListener("DOMContentLoaded", () => {
+    api.checkEntitlementAndMaybePopup(); // /api/entitlement を見て expired/warning を出す
+  });
+</script>
+
+
+      </body>
+</html>

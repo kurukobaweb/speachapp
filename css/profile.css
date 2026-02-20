@@ -1,0 +1,161 @@
+:root{
+  --bg:#eef1f5;
+  --card:#fff;
+  --text:#1b1e28;
+  --muted:#6b7280;
+  --border:#e5e7eb;
+  --focus:#5b8cff;
+  --shadow:0 12px 40px rgba(0,0,0,.08);
+}
+
+/* カード */
+.profile-card{
+  max-width:720px;
+  margin: 12px auto 24px;
+  background:var(--card);
+  border-radius:24px;
+  box-shadow:var(--shadow);
+  padding:24px 22px;
+}
+.card-head{margin-bottom:8px}
+.card-title{display: flex; align-items: center; margin:0; font-size:22px; font-weight:800; color:#374151}
+.card-sub{margin:6px 0 0; color:#9ca3af; font-size:13px}
+
+/* エラー */
+.form-error{min-height:1.2em; color:#d03939; margin:8px 0 6px}
+
+/* フォーム */
+.form-grid{display:grid; gap:14px}
+.form-row{display:grid; gap:6px}
+.form-label{font-size:14px; color:#4b5563}
+.form-input{
+  width:100%; padding:14px 16px; border:1.5px solid var(--border);
+  border-radius:12px; font-size:16px; background:#fff; outline:none;
+}
+.form-input:focus{border-color:var(--focus); box-shadow:0 0 0 3px rgba(91,140,255,.15)}
+
+.input-wrapper{position:relative}
+.toggle-eye{
+  position:absolute; right:8px; top:50%; transform:translateY(-50%);
+  width:36px; height:36px; border:0; background:transparent; cursor:pointer;
+}
+
+/* アクション */
+.form-actions{display:flex; gap:10px; justify-content:center; margin-top:6px}
+.btn-primary{
+  border:0; padding:14px 18px; border-radius:999px; cursor:pointer; font-weight:800;
+  color:#fff;
+    background: linear-gradient(180deg, var(--primary-1), var(--primary-2));
+    width: 110px;
+}
+.btn-outline{
+  border:1.5px solid var(--border); background:#fff; color:#1f2937;
+  padding:12px 18px; border-radius:999px; cursor:pointer;
+}
+
+.btn-paid{
+  display: inline-block;
+    border: 0;
+    color: #fff;
+    cursor: pointer;
+    background: linear-gradient(180deg, var(--primary-1), var(--primary-2));
+    padding: 10px 14px;
+    border-radius: 999px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    height: 50%;
+}
+
+.paid-flex{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+/* コースバッジ */
+.course-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  margin-left:10px;            /* h2 のすぐ右 */
+  padding:6px 10px;
+  border-radius:999px;
+  font-size:12px;
+  font-weight:800;
+  line-height:1;
+  border:1px solid var(--border);
+  background:#f8fafc;
+  color:#374151;
+  white-space:nowrap;
+}
+.course-badge[data-course="free"]{
+  background:#eef2ff;
+  border-color:#c7d2fe;
+}
+.course-badge[data-course="pro"]{
+  background:#ecfeff;
+  border-color:#a5f3fc;
+}
+.course-badge[data-course="admin"]{
+  background:#fef3c7;
+  border-color:#fde68a;
+}
+/* PRO：金色バッジ */
+.course-badge[data-course="pro"]{
+  background: linear-gradient(
+    135deg,
+    #f6e27a 0%,
+    #f0c14b 45%,
+    #e0aa2c 100%
+  );
+  border-color: #c89b1f;
+  color: #5a3e00;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.6),
+    0 2px 6px rgba(0,0,0,.15);
+}
+/* role バッジ */
+.role-badge{
+  display:inline-flex;
+  align-items:center;
+  margin-left:6px;
+  padding:6px 10px;
+  border-radius:999px;
+  font-size:12px;
+  font-weight:800;
+  line-height:1;
+  background:#f1f5f9;
+  color:#334155;
+  border:1px solid var(--border);
+  white-space:nowrap;
+}
+
+/* role 別色分け */
+.role-badge[data-role="user"]{
+  background:#f1f5f9;
+}
+.role-badge[data-role="teacher"]{
+  background:#ecfeff;
+  border-color:#67e8f9;
+}
+.role-badge[data-role="admin"]{
+  background:#fee2e2;
+  border-color:#fecaca;
+  color:#7f1d1d;
+}
+.role-badge[data-role="owner"]{
+  background:#ede9fe;
+  border-color:#ddd6fe;
+  color:#4c1d95;
+}
+
+/* モバイル調整 */
+@media (max-width:768px){
+  .profile-card{border-radius:28px; padding:22px 18px}
+  .btn-primary,.btn-outline{flex:1}
+  .form-actions{justify-content:stretch}
+  .paid-flex {
+
+    flex-wrap: wrap;
+    gap: 8px;
+}
+}

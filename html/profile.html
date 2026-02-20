@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>プロフィール編集</title>
+
+  <!-- 共通CSS -->
+  <link rel="stylesheet" href="../common/header.css">
+  <link rel="stylesheet" href="../common/sidebar.css">
+  <link rel="stylesheet" href="../common/bottom-nav.css">
+  <link rel="stylesheet" href="../css/home.css"><!-- ページレイアウト系（page-bg / home-layout / page-inner など） -->
+  <link rel="stylesheet" href="../css/setting.css"><!-- 角丸/カード共通のトーン -->
+  <!-- 既存のベース -->
+  <!-- プロフィール専用 -->
+  <link rel="stylesheet" href="../css/profile.css">
+</head>
+<body>
+
+  <!-- 共通ヘッダー -->
+  <div id="siteHeader" data-header-src="../common/header.html"></div>
+
+  <!-- 背景 & レイアウト -->
+  <div class="page-bg"></div>
+  <div class="home-layout">
+    <!-- 共通サイドバー（PC） -->
+    <div id="siteSidebar" data-sidebar-src="../common/sidebar.html"></div>
+
+    <main class="home-main">
+      <div class="page-inner">
+        <!-- プロフィールカード -->
+        <section class="card profile-card">
+          <header class="card-head">
+            <div class="paid-flex">
+              <h2 class="card-title">プロフィール編集
+              <span id="courseBadge" class="course-badge" hidden>--</span>
+              <span id="roleBadge" class="role-badge" hidden></span>
+            </h2>
+              <button class="btn-paid" type="button" onclick="location.href='/upgrade.html'">アップグレード</button>
+            </div>
+            <p class="card-sub">アカウント情報を更新できます。</p>
+
+          </header>
+
+          <div id="profileError" class="form-error" aria-live="polite"></div>
+
+          <form id="profileForm" class="form-grid" novalidate>
+            <div class="form-row">
+              <label for="profileName" class="form-label">名前</label>
+              <input type="text" id="profileName" class="form-input" autocomplete="name" required>
+            </div>
+
+            <div class="form-row">
+              <label for="profileEmail" class="form-label">Email</label>
+              <input type="email" id="profileEmail" class="form-input" autocomplete="email" required>
+            </div>
+
+            <div class="form-row">
+              <label for="profileAffiliation" class="form-label">所属</label>
+              <input type="text" id="profileAffiliation" class="form-input" autocomplete="organization">
+            </div>
+
+            <div class="form-row">
+              <label for="profilePassword" class="form-label">新しいパスワード</label>
+              <div class="input-wrapper">
+                <input type="password" id="profilePassword" class="form-input" autocomplete="new-password" placeholder="未入力なら変更しません">
+                <button type="button" class="toggle-eye" data-target="profilePassword" aria-label="パスワード表示切替"></button>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <label for="profilePasswordConfirm" class="form-label">パスワード確認</label>
+              <div class="input-wrapper">
+                <input type="password" id="profilePasswordConfirm" class="form-input" autocomplete="new-password">
+                <button type="button" class="toggle-eye" data-target="profilePasswordConfirm" aria-label="パスワード表示切替"></button>
+              </div>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="btn-primary">保存</button>
+              <button type="button" id="profileCancel" class="btn-outline">キャンセル</button>
+            </div>
+          </form>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <!-- SPボトムナビ -->
+  <div id="siteBottomNav" data-bottom-src="../common/bottom-nav.html"></div>
+<script>window.API_BASE = `${location.protocol}//${location.hostname}:8200`;</script>
+
+  <!-- 設定モーダル（共通） -->
+  <div id="settingModal"></div>
+<script type="module" src="/js/config.js"></script>
+<script type="module" src="/js/login.js"></script>
+  <!-- 共通ローダー -->
+  <script type="module" src="../common/header.js" defer></script>
+  <script type="module" src="../common/sidebar.js" defer></script>
+  <script type="module" src="../common/bottom-nav-loader.js" defer></script>
+
+  <!-- 既存スクリプト -->
+  <script type="module" src="../js/toggleeye.js" defer></script>
+  <script type="module" src="../js/profile.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>お支払い手続き</title>
+  <!-- 共通CSS（loginと同じ） -->
+  <link rel="stylesheet" href="common/header.css">
+  <link rel="stylesheet" href="css/style.css"></head>
+    <link rel="stylesheet" href="css/upgrade.css">
+    <link rel="stylesheet" href="css/setting.css">
+
+<body>
+      <!-- 共通ヘッダー（任意。loginと同じ共通化をする場合） -->
+  <div id="siteHeader" data-header-src="common/header.html"></div>
+
+  <!-- 背景 & ラップ（login と同じスケルトン） -->
+  <div class="page-bg"></div>
+  <main class="auth-wrap">
+    <section class="auth-card">
+      <h1 class="auth-title">お支払い手続き</h1>
+      <p id="msg" class="helper">決済ページへ移動しています…</p>
+      <p id="err" class="error"></p>
+      <button id="retry" class="apply-btn" style="display:none;width:100%;justify-content:center;">
+        もう一度試す
+      </button>
+      <button class="apply-btn cancel" style="width:100%;justify-content:center;margin-top:10px;"
+              onclick="location.href='/profile.html'">
+        戻る
+      </button>
+    </section>
+  </main>
+  <script>window.API_BASE = `${location.protocol}//${location.hostname}:8200`;</script>
+
+<script type="module" src="/js/config.js"></script>
+<script type="module" src="/js/login.js"></script>
+  <!-- 既存スクリプト -->
+  <script type="module" src="js/toggleeye.js" defer></script>
+  <script type="module" src="js/register-paid.js" defer></script>
+  <!-- 共通ヘッダーローダー（共通化している場合） -->
+  <script type="module" src="common/header.js" defer></script>
+  <script type="module" src="/js/pay.js"></script>
+</body>
+</html>

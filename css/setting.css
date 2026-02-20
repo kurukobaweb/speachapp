@@ -1,0 +1,129 @@
+/* === 設定モーダル === */
+.modal-bg{
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,.45);
+  display: none;               /* setting.js で display: flex に */
+  align-items: center; justify-content: center;
+  padding: 20px; z-index: 1000;
+}
+
+.modal-content{
+  position: relative;
+  width: min(560px, 92vw);
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  box-shadow: var(--shadow);
+  padding: 24px 22px 18px;
+}
+
+.modal-content h2{
+  margin: 0 0 12px;
+  font-size: 20px; font-weight: 700; color: #374151;
+}
+
+/* 設定行（ホーム設定カードと同じ雰囲気） */
+.modal-content .setting-row{
+  display: grid; grid-template-columns: 120px 1fr;
+  gap: 12px; align-items: center;
+  padding: 10px 0; border-top: 1px solid #f2f4f8;
+}
+.modal-content .setting-row:first-of-type{ border-top: none; }
+.modal-content .setting-row > span{ color:#6b7280; }
+
+.modal-content select{
+  width: 100%;
+  padding: 10px 12px;
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  background: #fff;
+  font-size: 14px;
+}
+
+/* ボタン（SAVE/CANCEL をカードと統一） */
+.modal-btns{
+  display: flex; gap: 12px;
+  justify-content: flex-end;
+  justify-content: center;
+  padding-top: 14px;
+}
+.apply-btn{
+  border: 0; cursor: pointer; font-weight: 700;
+  padding: 12px 18px; border-radius: 999px;
+}
+.apply-btn:not(.cancel){
+  color:#fff;
+  background: linear-gradient(180deg, var(--primary-1), var(--primary-2));
+      width: 110px;
+}
+.apply-btn.cancel{
+  background:#fff; color:#374151; border:1.5px solid var(--border);
+}
+
+/* 閉じる(X) */
+.modal-close{
+  position:absolute; right:12px; top:10px;
+  background:transparent; border:0; font-size:18px; cursor:pointer; color:#6b7280;
+}
+
+/* === 共通: 画面全面のオーバーレイ化 === */
+.setting-modal,
+.modal-bg {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  display: none;           /* JSでblock or flex に */
+  z-index: 9999;           /* ヘッダー等より前面 */
+}
+
+/* 新式: 背景 */
+.setting-modal .setting-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,.4);
+}
+
+/* 新式: パネル本体を中央に */
+.setting-modal .setting-panel {
+  position: relative;
+  max-width: 560px;
+  width: min(92vw, 560px);
+  margin: 8vh auto 0 auto;
+  background: #fff;
+  border-radius: 12px;
+  padding: 16px 18px;
+  box-shadow: 0 12px 36px rgba(0,0,0,.25);
+  outline: none;
+}
+
+/* 旧式: 中央寄せ */
+.modal-bg {
+  display: none;           /* JSでflexにする */
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,.4);
+}
+.modal-bg .modal-content {
+  max-width: 560px;
+  width: min(92vw, 560px);
+  background: #fff;
+  border-radius: 12px;
+  padding: 16px 18px;
+  box-shadow: 0 12px 36px rgba(0,0,0,.25);
+}
+
+
+/* モバイル最適化 */
+@media (max-width: 520px){
+  .modal-content{ border-radius: 20px; padding: 22px 16px 16px; }
+  .modal-content .setting-row{
+    /*grid-template-columns: 1fr;*/
+    gap: 6px;
+    padding: 12px 0;
+    max-height: 70vh;
+    overflow: auto;
+  }
+  .modal-btns{ justify-content: stretch; }
+  .apply-btn, .apply-btn.cancel{ flex: 1; }
+}

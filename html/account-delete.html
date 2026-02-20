@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>解約（アカウント削除）</title>
+
+  <!-- 既存の共通CSS（あなたのプロジェクトに合わせてパス調整） -->
+  <link rel="stylesheet" href="../css/style.css" />
+    <!-- 共通CSS -->
+  <link rel="stylesheet" href="../common/header.css">
+  <link rel="stylesheet" href="../common/bottom-nav.css">
+
+  <!-- 共通のレイアウト系（homeで使っているものがあれば流用） -->
+  <link rel="stylesheet" href="../css/home.css">
+  <link rel="stylesheet" href="../css/setting.css">
+
+  <!-- ベース -->
+  <link rel="stylesheet" href="../css/style.css">
+  <!-- 管理画面専用 -->
+
+</head>
+</head>
+
+<body>
+  <!-- 共通ヘッダー -->
+  <div id="siteHeader" data-header-src="../common/header.html"></div>
+
+  <!-- 背景 & レイアウト -->
+  <div class="page-bg"></div>
+    <!-- 共通サイドバー（PC） -->
+
+  <main class="auth-wrap">
+    <section class="auth-card">
+      <h1 class="auth-title">解約（アカウント削除）</h1>
+      <p class="auth-sub">
+        アカウントを削除すると、スコア履歴や登録情報などのデータは復元できません。<br>
+        本人確認のため、ユーザー名・メールアドレス・パスワードの入力が必要です。
+      </p>
+
+      <form id="deleteForm" class="auth-form" novalidate>
+        <div class="form-row">
+          <label for="username">ユーザー名</label>
+          <input id="username" name="username" type="text" autocomplete="username" required />
+        </div>
+
+        <div class="form-row">
+          <label for="email">メールアドレス</label>
+          <input id="email" name="email" type="email" autocomplete="email" required />
+        </div>
+
+        <div class="form-row">
+          <label for="password">パスワード</label>
+          <input id="password" name="password" type="password" autocomplete="current-password" required />
+        </div>
+
+        <div class="alert warn" id="warnBox" style="display:none;"></div>
+        <div class="alert ok" id="okBox" style="display:none;"></div>
+
+        <div class="btn-row">
+          <button type="button" class="btn-outline" id="btnCancel">キャンセル</button>
+          <button type="submit" class="btn-danger" id="btnDelete">解約（削除）</button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <!-- 規約モーダル（同じUIのモーダルが既にあるなら、それに寄せてOK） -->
+  <div class="modal" id="termsModal" aria-hidden="true">
+    <div class="modal__backdrop" data-close="1"></div>
+    <div class="modal__panel" role="dialog" aria-modal="true" aria-labelledby="termsTitle">
+      <div class="modal__header">
+        <div class="modal__title" id="termsTitle">アカウント削除に関する規約（確認）</div>
+        <button class="modal__close" type="button" aria-label="閉じる" id="termsClose">×</button>
+      </div>
+
+      <div class="modal__body">
+        <div class="terms-box" id="termsText">
+          <!-- 実際の規約文に差し替え -->
+          <h2>削除の影響</h2>
+          <ul>
+            <li>アカウント情報・スコア・履歴データは削除され、復元できません。</li>
+            <li>有料プラン利用中の場合、別途「サブスクリプション解約」が必要な場合があります。</li>
+            <li>不正利用防止のため、一部ログは法令・規約に基づき保持される場合があります。</li>
+          </ul>
+
+          <h2>注意事項</h2>
+          <ul>
+            <li>本人確認として、ユーザー名・メール・パスワードが一致しない場合は削除できません。</li>
+            <li>削除処理完了後、自動的にログアウトしログイン画面に戻ります。</li>
+          </ul>
+        </div>
+
+        <label class="check-row">
+          <input type="checkbox" id="chkAgree">
+          <span>上記の内容を確認し、削除に同意します。</span>
+        </label>
+
+        <div class="alert warn" id="termsWarn" style="display:none;"></div>
+      </div>
+
+      <div class="modal__footer">
+        <button type="button" class="btn-outline" id="termsBack">戻る</button>
+        <button type="button" class="btn-danger" id="termsOk">次へ（最終確認）</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 最終確認モーダル（二重確認） -->
+  <div class="modal" id="confirmModal" aria-hidden="true">
+    <div class="modal__backdrop" data-close="1"></div>
+    <div class="modal__panel" role="dialog" aria-modal="true" aria-labelledby="confirmTitle">
+      <div class="modal__header">
+        <div class="modal__title" id="confirmTitle">最終確認</div>
+        <button class="modal__close" type="button" aria-label="閉じる" id="confirmClose">×</button>
+      </div>
+
+      <div class="modal__body">
+        <p class="confirm-text">
+          本当にアカウントを削除しますか？<br>
+          <strong>この操作は取り消せません。</strong>
+        </p>
+        <div class="alert warn" id="confirmWarn" style="display:none;"></div>
+      </div>
+
+      <div class="modal__footer">
+        <button type="button" class="btn-outline" id="confirmBack">戻る</button>
+        <button type="button" class="btn-danger" id="confirmDo">削除を実行</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 既存のAPIクライアントを使う -->
+    <script type="module" src="../js/account-delete.js"></script>
+
+  <!-- 最小追加CSS（既存のモーダル/ボタンがない場合のため） -->
+  <style>
+    /* 既存のデザインがあるなら、このstyleは不要（または値を共通に合わせてください） */
+    .btn-row { display:flex; gap:12px; justify-content:flex-end; margin-top:16px; }
+    .btn-danger { background:#d9534f; color:#fff; border:none; padding:10px 14px; border-radius:10px; }
+    .btn-outline { background:transparent; border:1px solid rgba(0,0,0,.2); padding:10px 14px; border-radius:10px; }
+
+    .alert { padding:10px 12px; border-radius:10px; margin-top:12px; font-size:14px; }
+    .alert.warn { background:rgba(217,83,79,.12); border:1px solid rgba(217,83,79,.35); }
+    .alert.ok   { background:rgba(40,167,69,.12); border:1px solid rgba(40,167,69,.35); }
+
+    .modal { position:fixed; inset:0; display:none; z-index:9999; }
+    .modal[aria-hidden="false"] { display:block; }
+    .modal__backdrop { position:absolute; inset:0; background:rgba(0,0,0,.45); }
+    .modal__panel { position:relative; width:min(720px, 92vw); margin:6vh auto; background:#fff; border-radius:16px; overflow:hidden; }
+    .modal__header, .modal__footer { padding:14px 16px; display:flex; align-items:center; justify-content:space-between; gap:12px; }
+    .modal__body { padding:16px; max-height:60vh; overflow:auto; }
+    .modal__title { font-weight:700; }
+    .modal__close { border:none; background:transparent; font-size:22px; cursor:pointer; }
+    .terms-box h2 { margin:14px 0 6px; font-size:16px; }
+    .terms-box ul { margin:0 0 8px 18px; }
+    .check-row { display:flex; gap:10px; align-items:flex-start; margin-top:12px; }
+    .confirm-text { margin:0; line-height:1.6; }
+    .auth-wrap {
+    min-height: calc(100vh - 92px);
+    display: grid;
+    place-items: center;
+    padding: 48px 16px;
+    }
+    .auth-card {
+        width: min(560px, 92vw);
+        background: var(--card);
+        border-radius: 28px;
+        box-shadow: var(--shadow);
+        padding: 36px 36px 28px;
+        text-align: center;
+    }
+    
+    .auth-title {
+        margin: 8px 0 24px;
+        font-size: 28px;
+        font-weight: 800;
+        letter-spacing: 0.2px;
+    }
+  </style>
+
+    <!-- SPボトムナビ 
+<div id="siteBottomNav" data-bottom-src="/common/bottom-nav.html"></div>-->
+<script>window.API_BASE = `${location.protocol}//${location.hostname}:8200`;</script>
+
+
+  <!-- 共通ローダー -->
+     <script type="module" src="../common/header.js" defer></script>
+   <!-- 共通ローダー<script type="module" src="../common/bottom-nav-loader.js" defer></script> -->
+
+
+  <!-- 目アイコン（admin.jsが window.initEyeToggle を呼ぶ前提） -->
+  <script type="module" src="../js/toggleeye.js" defer></script>
+
+</body>
+</html>

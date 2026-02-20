@@ -1,0 +1,257 @@
+:root{
+  --bg:#eef1f5;
+  --card:#fff;
+  --text:#1b1e28;
+  --muted:#6b7280;
+  --border:#e5e7eb;
+  --focus:#5b8cff;
+  --primary-1:#6ea2ff;
+  --primary-2:#6b8df0;
+  --shadow:0 12px 40px rgba(0,0,0,.08);
+}
+
+/* カード */
+.admin-card{
+  max-width:1100px;
+  margin: 0 auto 24px;
+  background:var(--card);
+  border-radius:24px;
+  box-shadow:var(--shadow);
+  padding:24px 22px;
+  max-height: 720px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 中身だけスクロールさせる */
+.admin-scroller{
+  flex: 1 1 auto;            /* 余りをすべて使う */
+  min-height: 0;             /* Flex内で正しく縮むための重要指定 */
+  overflow: auto;            /* ← スクロールはここに */
+  padding-block: 8px;        /* 好みで */
+}
+
+.card-head{margin-bottom:10px}
+.card-title{margin:0; font-size:22px; font-weight:800; color:#374151}
+.card-sub{margin:6px 0 0; color:#9ca3af; font-size:13px}
+
+/* ツールバー */
+.admin-toolbar{
+  display:flex; gap:12px; align-items:end; justify-content:space-between;
+  margin: 8px 0 14px;
+  flex-wrap:wrap;
+}
+.filter{display:flex; gap:8px; align-items:center}
+.filter-label{font-size:14px; color:#4b5563}
+.filter-select{
+  min-width:180px;
+  height:38px;
+  padding:6px 10px;
+  border:1.5px solid var(--border);
+  border-radius:10px;
+  background:#fff; color:#1f2937;
+}
+.btn-outline.small{
+  border:1.5px solid var(--border); background:#fff; color:#1f2937;
+  padding:8px 12px; border-radius:999px; font-weight:700; font-size:14px; text-decoration:none;
+}
+
+/* テーブル */
+.table-wrap{position:relative}
+.admin-table{
+  width:100%;
+  border-collapse:collapse;
+  table-layout:fixed;
+  border:1px solid #edf0f5;
+  border-radius:14px;
+  overflow:hidden;
+}
+.admin-table thead th{
+  text-align:left; background:#f8fafc;
+  padding:10px 12px; font-size:13px; color:#6b7280; border-bottom:1px solid #edf0f5;
+  position:sticky; top:0; z-index:1;
+}
+.admin-table tbody td{
+  padding:10px 12px; border-bottom:1px solid #f1f5f9; vertical-align:middle;
+  word-wrap:break-word; font-size:14px;
+}
+
+/* 入力類 */
+.admin-table input[type="text"],
+.admin-table input[type="email"],
+.admin-table input[type="password"],
+.admin-table select{
+  width:100%;
+  height:36px;
+  padding:6px 10px;
+  border:1.5px solid var(--border);
+  border-radius:10px;
+  background:#fff; color:#1f2937;
+  outline:none;
+}
+.admin-table input:focus,
+.admin-table select:focus{
+  border-color:var(--focus);
+  box-shadow:0 0 0 3px rgba(91,140,255,.15);
+}
+.input-wrapper{position:relative}
+.toggle-eye{
+  position:absolute; right:6px; top:50%; transform:translateY(-50%);
+  width:32px; height:32px; border:0; background:transparent; cursor:pointer;
+}
+
+/* 操作ボタン */
+.btn-update, .btn-delete{
+  appearance:none; border:0; cursor:pointer;
+  padding:10px 12px; border-radius:10px; font-weight:800; font-size:13px;
+}
+.btn-update{ background:linear-gradient(180deg, var(--primary-1), var(--primary-2)); color:#fff; }
+.btn-delete{ background:#fff; border:1.5px solid #fecaca; color:#b91c1c; margin-left:6px; }
+
+.btn-cancel {
+    background: #fff;
+    color: #374151;
+    border: 1.5px solid var(--border);
+    cursor: pointer;
+    font-weight: 700;
+    padding: 12px 18px;
+    border-radius: 999px;
+}
+
+/* 状態表示 */
+.loading, .empty{
+  text-align:center; color:#64748b; padding:14px 0; font-size:14px;
+}
+/* ========== User Card layout ========== */
+.user-cards{ display:grid; gap:16px; }
+
+.user-card{
+  background:#fff; border-radius:16px; box-shadow:0 10px 28px rgba(0,0,0,.06);
+  padding:18px; border:1px solid #eef2f7;
+  margin-bottom: 30px;
+}
+
+
+
+.user-card .uc-head{
+  display:flex; align-items:center; justify-content:space-between; gap:10px;
+  margin-bottom:10px;
+}
+
+.newuser-card{
+  background:#fff; border-radius:16px; box-shadow:0 10px 28px rgba(0,0,0,.06);
+  padding:18px; border:1px solid #eef2f7;
+  margin-bottom: 30px;
+}
+
+.uc-title{ font-weight:800; color:#374151; font-size:16px; }
+.uc-id{ color:#94a3b8; font-size:12px; word-break:break-all; }
+
+.uc-grid{
+  display:grid; gap: 6px 12px;
+  grid-template-columns: 140px 1fr;
+}
+.uc-row{ display:contents; }      /* ラベル＋入力を行として扱う */
+.uc-label{
+  align-self:center; color:#4b5563; font-size:14px; font-weight:700;
+}
+.uc-field input[type="text"],
+.uc-field input[type="email"],
+.uc-field input[type="password"],
+.uc-field select{
+  width:100%; height:40px; padding:10px 12px;
+  border:1.5px solid #e5e7eb; border-radius:12px; background:#fff; outline:none;
+  font-size:15px; color:#111827;
+}
+.uc-field input:focus, .uc-field select:focus{
+  border-color:#5b8cff; box-shadow:0 0 0 3px rgba(91,140,255,.15);
+}
+
+.uc-field .input-wrapper{ position:relative; }
+.uc-field .toggle-eye{
+  position:absolute; right:6px; top:50%; transform:translateY(-50%);
+  width:32px; height:32px; background:transparent; border:0; cursor:pointer;
+}
+
+.uc-meta{ color:#475569; font-size:14px; align-self:center; }
+
+.uc-actions{
+  grid-column: 1 / -1;
+  display:flex; gap:10px; justify-content:flex-end; margin-top:6px;
+}
+.btn-update{
+  padding:12px 18px; border:0; border-radius:999px; font-weight:800; cursor:pointer;
+  color:#fff; background:linear-gradient(180deg,#6ea2ff,#6b8df0);
+}
+.btn-delete{
+  padding:12px 18px; border-radius:999px; font-weight:800; cursor:pointer;
+  background:#fff; color:#b91c1c; border:1.5px solid #fecaca;
+}
+@media (max-width: 768px){
+/* === 汎用モーダル基盤 === */
+  .modal{
+    position: fixed;
+    inset: 0;
+    z-index: 11000;          /* ← ヘッダー/フッターより十分大きく */
+    background: transparent; /* 透けさせるのは overlay でやる */
+    display: none;
+  }
+.modal.is-open{ display:block; }
+
+.modal__overlay{
+  position:absolute;
+  inset:0;
+      z-index: 0;                       /* 背景 */
+
+  background: rgba(0,0,0,.45);
+}
+.modal__dialog{
+  position:relative;
+      z-index: 1;                       /* パネル */
+
+  margin: 0 auto 6vh; 
+  width: clamp(320px, 92vw, 640px);
+  max-height: 88vh;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.2);
+  display:flex;
+  flex-direction: column;
+}
+.modal__header{ padding: 16px 20px; border-bottom: 1px solid #eee; }
+.modal__body  { padding: 16px 20px; overflow: auto; z-index: 0;}
+.modal__footer{ padding: 12px 20px; border-top: 1px solid #eee; display:flex; gap:8px; justify-content:flex-end; }
+  #siteHeader, #siteBottomNav { z-index: 1000; } /* modal(11000) より下 */
+
+/* === SPはフルスクリーンのオーバーレイ === 
+
+  .modal__dialog{
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+    max-height: none;
+    border-radius: 0;
+  }
+  .modal__body{ flex:1; overflow:auto; }*/
+}
+
+
+/* スマホ：1列 */
+@media (max-width:768px){
+  .uc-grid{
+    grid-template-columns: 1fr;
+  }
+  .uc-label{ font-size:13px; }
+  .uc-actions{ justify-content:stretch; }
+  .btn-update, .btn-delete{ flex:1; }
+  .newuser-card {
+
+    margin-bottom: 0;
+}
+
+/* スマホ：ヘッダ幅確保＆スクロール */
+@media (max-width: 768px){
+  .admin-card{ border-radius:28px; padding:18px 16px; max-height: 75vh; }
+  .admin-table{ display:block; overflow:auto; }
+  .admin-table thead th, .admin-table tbody td{ white-space:nowrap; }
+}

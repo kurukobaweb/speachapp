@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>お題一括登録</title>
+
+  <!-- 共通CSS -->
+  <link rel="stylesheet" href="../common/header.css" />
+  <link rel="stylesheet" href="../common/sidebar.css" />
+  <link rel="stylesheet" href="../common/bottom-nav.css" />
+  <link rel="stylesheet" href="../css/home.css" />
+  <link rel="stylesheet" href="../css/setting.css" />
+  <link rel="stylesheet" href="../css/bulk-themes.css" />
+</head>
+<body>
+  <!-- 共通ヘッダー -->
+  <div id="siteHeader" data-header-src="../common/header.html"></div>
+
+  <div class="page-bg"></div>
+  <div class="home-layout">
+    <!-- 共通サイドバー -->
+    <div id="siteSidebar" data-sidebar-src="../common/sidebar.html"></div>
+
+    <main class="home-main">
+      <div class="page-inner">
+        <section class="card bulk-card">
+          <header class="card-head">
+            <h2 class="card-title">テーマ一括登録</h2>
+            <p class="card-sub">Excel（.xlsx）または JSON 配列でまとめて登録できます。</p>
+          </header>
+
+          <div class="bulk-grid">
+            <!-- ドロップゾーン / ファイル選択 -->
+            <div class="dropzone" id="dropzone">
+              ここにファイルをドラッグ＆ドロップ<br>
+              <small>またはクリックして選択（.xlsx / .json）</small>
+            </div>
+            <input id="fileInput" type="file"
+                  accept=".json,application/json,.xlsx,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                  hidden>
+
+            <div class="preview">
+              <div>件数: <span id="previewCount">0</span></div>
+              <div>ファイル: <span id="previewName">なし</span></div>
+            </div>
+
+            <!-- JSONテキスト -->
+            <div class="area-row">
+              <label for="themesJson">JSON配列</label>
+              <textarea id="themesJson" placeholder='例：
+[
+  {"level":"初級","sub":"1","type":"二択","question":"<ruby>すし</ruby>が<ruby>好<rt>す</rt></ruby>きですか？"},
+  {"level":"初級","sub":"2","type":"二択","question":"…"}
+]'></textarea>
+              <p class="hint">必須フィールド：<code>level</code>, <code>sub</code>, <code>type</code>, <code>question</code>（<code>id</code>, <code>created_at</code> は自動補正／付与）</p>
+            </div>
+
+            <div class="bulk-actions">
+              <button id="bulkBtn" class="btn-primary">RECORD</button>
+              <button id="cancelBtn" type="button" class="btn-outline">CANCEL</button>
+            </div>
+
+            <div id="bulkMsg" aria-live="polite"></div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+<!-- モーダルを注入するマウント -->
+<div id="settingModal"></div>
+  <!-- SPボトムナビ -->
+  <div id="siteBottomNav" data-bottom-src="../common/bottom-nav.html"></div>
+  <!-- 共通ローダー -->
+  <script type="module" src="../common/header.js" defer></script>
+  <script type="module" src="../common/sidebar.js" defer></script>
+  <script type="module" src="../common/bottom-nav-loader.js" defer></script>
+
+  <!-- SheetJS -->
+  <script type="module" src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
+  <!-- ページJS -->
+   <script type="module" src="../js/setting.js" defer></script>
+
+  <script type="module" src="../js/bulk-themes.js" defer></script>
+</body>
+</html>

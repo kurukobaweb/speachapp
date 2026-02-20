@@ -1,0 +1,158 @@
+:root{
+  --bg:#eef1f5;
+  --card:#fff;
+  --text:#1b1e28;
+  --muted:#6b7280;
+  --border:#e5e7eb;
+  --primary-1:#6ea2ff;
+  --primary-2:#6b8df0;
+  --accent:#ff7a00;     /* RESULT */
+  --rec:#ff1178;        /* STOP */
+  --ok:#16a34a;         /* マイク緑（未使用なら無視） */
+  --shadow:0 12px 40px rgba(0,0,0,.08);
+}
+
+html,body{height:100%}
+body{margin:0; background:var(--bg); color:var(--text); font-family:"Noto Sans JP",system-ui, -apple-system, Segoe UI, Roboto, "Yu Gothic", "Meiryo", sans-serif;}
+
+/* レイアウト */
+.page{max-width:1200px; margin:0 auto; padding:24px 16px 120px;}
+.page-inner{display:grid; grid-template-columns: 1fr; gap:24px;}
+
+/* サイドバー分だけ中央に */
+@media (min-width: 1024px){
+  .page{padding-left:260px; padding-right:20px;}
+}
+
+/* カード共通 */
+.practice-card, .result-card{
+  background:var(--card);
+  border-radius:24px;
+  box-shadow:var(--shadow);
+  padding:32px 28px;
+  width:90vw;
+  max-width:720px;
+  margin: 0 auto;
+}
+
+/* 見出し */
+.pc-head{
+  display:flex; align-items:center; justify-content:space-between;
+  margin-bottom:8px;
+}
+.pc-head .pc-lv, .pc-head .pc-no{
+  color:#6b7280; font-weight:700; font-size:18px;
+}
+.pc-head strong{color:#374151; font-size:22px; margin-left:.1em}
+
+/* 質問 */
+.pc-question-block{margin-top:8px;}
+.pc-meta{display:none;} /* #prompt のレイアウトはヘッダへ反映するので非表示 */
+.pc-question{margin-top:15px; text-align:center;}
+.pc-question .question{font-size:22px; line-height:1.6; font-weight:700;}
+.pc-tip{margin:12px auto 0; color:#9ca3af; font-size:13px; line-height:1.6; max-width:520px}
+
+/* TIME */
+.pc-time{margin:22px 0 8px; text-align:center}
+.pc-time-label{color:#9ca3af; font-size:12px; letter-spacing:1px}
+.pc-time-value{font-size:22px; font-weight:700; color:#374151}
+
+/* プログレスバー */
+.pc-bar{height:14px; background:#fff; border:1.5px solid #cbd5e1; border-radius:999px; overflow:hidden}
+.pc-bar#bar{margin:8px 0 18px}
+#barInner{height:100%; width:0%; background:linear-gradient(180deg, var(--primary-1), var(--primary-2)); transition:width .2s ease}
+#barInner2{height:100%; width:0%; background:linear-gradient(180deg, var(--primary-1), var(--primary-2)); transition:width .2s ease}
+.pc-bar.small{height:10px}
+
+/* カウントダウン */
+#countdown-overlay{position:relative}
+#countdown{
+  position:absolute; left:50%; transform:translateX(-50%);
+  top:-38px; width:68px; height:34px; border-radius:999px;
+  background:#fff; box-shadow:var(--shadow);
+  display:flex; align-items:center; justify-content:center;
+  font-weight:800; color:#374151; opacity:0; transition:opacity .2s ease;
+}
+#countdown.animate{opacity:1}
+
+/* アクション */
+.pc-actions{display:flex; gap:18px; align-items:center; justify-content:center; margin-top:10px}
+
+/* 大きな丸ボタン */
+.btn-cta{
+  display:inline-flex; align-items:center; justify-content:center;
+  width:160px; height:160px; border-radius:50%;
+  font-weight:800; border:2px solid #93b1ff; color:#fff;
+  box-shadow:0 10px 26px rgba(0,0,0,.08);
+}
+.btn-cta.start{ background:linear-gradient(180deg, var(--primary-1), var(--primary-2)); }
+.btn-cta.stop { background:var(--rec); }
+.btn-cta.result{ background:var(--accent); }
+
+.btn-cta[disabled]{ display:none; } /* script.js が disable するので、非表示にして切替える */
+
+/* ボタン行 */
+.rc-actions{
+  display:flex; gap:14px; justify-content: center; margin-top:16px;
+}
+
+/* ボタン */
+.btn-next{
+    display: inline-block;
+    border: 0;
+    color: #fff;
+    cursor: pointer;
+    background: linear-gradient(180deg, var(--primary-1), var(--primary-2));
+    padding: 16px 28px;
+    border-radius: 999px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+.btn-retry{
+    display: inline-block;
+    border: 1.5px solid var(--border);
+    color: #374151;
+    cursor: pointer;
+    background: #fff;
+    padding: 16px 28px;
+    border-radius: 999px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+/* 文字起こし */
+.pc-transcript{margin-top:20px}
+.pc-transcript h3{margin:0 0 6px; font-size:14px; color:#6b7280}
+
+/* 結果カード */
+.result-card .rc-head h2{margin:0 0 8px; font-size:20px}
+.result-card .rc-body{display:grid; gap:14px}
+.rc-row{display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid #f3f4f6; padding:8px 0}
+.rc-row.big strong{font-size:24px}
+.rc-text{margin-top:6px; color:#4b5563; line-height:1.7}
+
+
+/* どんな優先度でも確実に隠せる */
+.is-hidden { display: none !important; }
+
+/* カウントダウン吹き出しがクリックをブロックしないように */
+#countdown-overlay { pointer-events: none; }
+/* 画面でボタンを分離：これで “同時に見える” を物理的に防ぐ */
+#screen1 #btnNext,
+#screen1 #btnRetry {
+  display: none !important;
+}
+
+#screen2 #btnStart,
+#screen2 #btnStop,
+#screen2 #btnJudge {
+  display: none !important;
+}
+
+
+/* スマホ調整 */
+@media (max-width: 768px){
+  .practice-card, .result-card{ border-radius:28px; padding:26px 20px; }
+  .btn-cta{ width:100px; height:100px; }
+  .pc-question .question{ font-size:20px; }
+}

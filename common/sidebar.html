@@ -1,0 +1,102 @@
+<!-- common/sidebar.html -->
+<aside class="sidebar">
+  <!-- 必要アイコンのスプライト -->
+  <svg xmlns="http://www.w3.org/2000/svg" style="display:none;">
+    <symbol id="bi-house" viewBox="0 0 16 16">
+      <path d="M8.354 1.146a.5.5 0 0 0-.708 0L1 7.793V14.5A1.5 1.5 0 0 0 2.5 16h3A1.5 1.5 0 0 0 7 14.5V11h2v3.5A1.5 1.5 0 0 0 10.5 16h3A1.5 1.5 0 0 0 15 14.5V7.793l-6.646-6.647z"/>
+    </symbol>
+    <symbol id="bi-card-list" viewBox="0 0 16 16">
+      <path d="M14 4.5a.5.5 0 0 1-.5.5H6a.5.5 0 0 1 0-1h7.5a.5.5 0 0 1 .5.5m0 3a.5.5 0 0 1-.5.5H6a.5.5 0 0 1 0-1h7.5a.5.5 0 0 1 .5.5m0 3a.5.5 0 0 1-.5.5H6a.5.5 0 0 1 0-1h7.5a.5.5 0 0 1 .5.5"/>
+      <path d="M5 5.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0m0 3a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0m0 3a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0"/>
+    </symbol>
+            <symbol id="bi-score" viewBox="0 0 16 16">
+      <path d="M0 0h1v15h15v1H0zm14.817 3.113a.5.5 0 0 1 .07.704l-4.5 5.5a.5.5 0 0 1-.74.037L7.06 6.767l-3.656 5.027a.5.5 0 0 1-.808-.588l4-5.5a.5.5 0 0 1 .758-.06l2.609 2.61 4.15-5.073a.5.5 0 0 1 .704-.07"/>
+    </symbol>
+    <symbol id="bi-globe2" viewBox="0 0 16 16">
+  <path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m7.5-6.923c-.67.204-1.335.82-1.887 1.855A8 8 0 0 0 5.145 4H7.5zM4.09 4a9.3 9.3 0 0 1 .64-1.539 7 7 0 0 1 .597-.933A7.03 7.03 0 0 0 2.255 4zm-.582 3.5c.03-.877.138-1.718.312-2.5H1.674a7 7 0 0 0-.656 2.5zM4.847 5a12.5 12.5 0 0 0-.338 2.5H7.5V5zM8.5 5v2.5h2.99a12.5 12.5 0 0 0-.337-2.5zM4.51 8.5a12.5 12.5 0 0 0 .337 2.5H7.5V8.5zm3.99 0V11h2.653c.187-.765.306-1.608.338-2.5zM5.145 12q.208.58.468 1.068c.552 1.035 1.218 1.65 1.887 1.855V12zm.182 2.472a7 7 0 0 1-.597-.933A9.3 9.3 0 0 1 4.09 12H2.255a7 7 0 0 0 3.072 2.472M3.82 11a13.7 13.7 0 0 1-.312-2.5h-2.49c.062.89.291 1.733.656 2.5zm6.853 3.472A7 7 0 0 0 13.745 12H11.91a9.3 9.3 0 0 1-.64 1.539 7 7 0 0 1-.597.933M8.5 12v2.923c.67-.204 1.335-.82 1.887-1.855q.26-.487.468-1.068zm3.68-1h2.146c.365-.767.594-1.61.656-2.5h-2.49a13.7 13.7 0 0 1-.312 2.5m2.802-3.5a7 7 0 0 0-.656-2.5H12.18c.174.782.282 1.623.312 2.5zM11.27 2.461c.247.464.462.98.64 1.539h1.835a7 7 0 0 0-3.072-2.472c.218.284.418.598.597.933M10.855 4a8 8 0 0 0-.468-1.068C9.835 1.897 9.17 1.282 8.5 1.077V4z"/>
+    </symbol>
+    <symbol id="bi-person" viewBox="0 0 16 16">
+  <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5m.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1z"/>
+    </symbol>
+    <symbol id="bi-journal-text" viewBox="0 0 16 16">
+      <path d="M5 8h6v1H5V8zm0 2h6v1H5v-1z"/>
+      <path d="M3 0h10a2 2 0 0 1 2 2v12a1 1 0 0 1-1 1H3a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h10V2a1 1 0 0 0-1-1H3z"/>
+    </symbol>
+        <symbol id="bi-comment" viewBox="0 0 16 16">
+      <path d="M2 1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h9.586a2 2 0 0 1 1.414.586l2 2V2a1 1 0 0 0-1-1zm12-1a2 2 0 0 1 2 2v12.793a.5.5 0 0 1-.854.353l-2.853-2.853a1 1 0 0 0-.707-.293H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z"/>
+  <path d="M5 6a1 1 0 1 1-2 0 1 1 0 0 1 2 0m4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0m4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>
+    </symbol>
+  </svg>
+
+  <nav class="side-nav">
+    <div class="side-title">Home</div>
+
+    <a class="side-item" href="/index.html" data-match="home">
+      <svg class="bi"><use href="#bi-house"/></svg> 日本語スピーチ判定アプリ
+    </a>
+    <a class="side-item" href="/html/themes.html" data-match="themes">
+      <svg class="bi"><use href="#bi-card-list"/></svg> テーマ一覧
+    </a>
+      <a class="side-item" href="/html/score.html" data-match="score">
+    <svg class="bi"><use href="#bi-score"/></svg><span>スコア</span>
+  </a>
+<div class="side-section">Message</div>
+<a class="side-item" href="#" id="openMessages" data-match="messages">
+  <svg class="bi"><use href="#bi-comment"/></svg> 笈川理事長メッセージ
+</a>
+
+        <div class="side-title">LINK</div>
+
+    <a class="side-item" href="https://edu.modern.co.jp" data-match="edu"  target="_blank">
+      <svg class="bi"><use href="#bi-globe2"/></svg> 日本語教育サイト
+    </a>
+    <a class="side-item" href="https://oikawakohji.com/" data-match="edu"  target="_blank">
+      <svg class="bi"><use href="#bi-globe2"/></svg> 日本語スピーチ協会
+    </a>
+<!-- 管理者メニュー：見出しは teacher / admin / owner に表示 -->
+<div class="side-admin-group" data-requires-role="admin,owner,teacher">
+
+  <div class="side-section">管理者メニュー</div>
+
+  <!-- ユーザー管理：teacher / admin / owner に表示 -->
+  <a class="side-item"
+     href="/admin/admin.html"
+     data-match="admin-users"
+     data-requires-role="admin,owner,teacher">
+    <svg class="bi"><use href="#bi-person"/></svg> ユーザー管理
+  </a>
+
+  <!-- テーマ管理：admin / owner のみ表示（teacher は非表示） -->
+  <!-- <a class="side-item"
+     href="/admin/bulk-themes.html"
+     data-match="admin-themes"
+     data-requires-role="admin,owner">
+    <svg class="bi"><use href="#bi-journal-text"/></svg> テーマ管理
+  </a> -->
+</div>
+
+
+    <div class="side-links">
+      <a href="https://modern.co.jp/privacy-policy/" target="_blank">プライバシーポリシー</a>
+      <a href="https://modern.co.jp/corporate-social-responsibility/" target="_blank">CSRの取り組み</a>
+      <a href="https://modern.co.jp/quality-policy/" target="_blank">品質への取り組み</a>
+            <a href="https://edu.modern.co.jp/supportapp/#sdgs" target="_blank">お問い合わせ</a>
+      <!--<a href="/legal/commerce.html">特定商取引</a>-->
+    </div>
+          <div class="side-brand footer-logo">
+<a href="https://modern.co.jp/" target="_blank" rel="noopener">
+<img src="/images/logo.webp" alt="MODERN ロゴ">
+</a>
+<div class="copyright">Modern Co.,Ltd. Since 2026</div>
+</div>
+  </nav>
+</aside>
+<script>
+  // ロケーションに応じて active 付与（パス末尾と data-match をゆるく照合）
+  (function(){
+    var path = location.pathname;
+    document.querySelectorAll('.side-item').forEach(function(a){
+      if (path.includes(a.getAttribute('data-match'))) a.classList.add('is-active');
+    });
+  })();
+</script>

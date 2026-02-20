@@ -1,0 +1,138 @@
+/* 画面レイアウト */
+.home-layout{
+  max-width:1200px; margin:0 auto; padding:20px;
+  display:grid; grid-template-columns:260px 1fr; gap:20px;
+}
+
+/* サイドバー（PC表示） 
+.sidebar{
+  background:#fff; border:1px solid var(--border); border-radius:12px;
+  height:calc(100% - 0px);
+}
+.side-nav{padding:16px}
+.side-title{font-weight:700; margin:6px 0 8px; color:#334155;}
+.side-section{margin:18px 0 6px; font-weight:700; color:#334155;}
+.side-item{
+  display:flex; align-items:center; gap:10px;
+  padding:10px 12px; border-radius:10px; color:#334155; text-decoration:none;
+}
+.side-item .bi{width:18px; height:18px; fill:currentColor}
+.side-item:hover{background:#f3f4f6}
+.side-item.is-active{background:#eaf0ff; color:#1f3bb3;}
+.side-links{margin-top:16px; display:grid; gap:8px}
+.side-links a{color:#6b7280; text-decoration:none; font-size:12px}
+.side-brand{margin-top:10px; color:#9ca3af; font-size:11px}
+.side-brand .logo{font-weight:800; letter-spacing:2px; color:#a78bfa}*/
+
+/* メイン */
+.home-main{display:grid; gap:15px}
+
+/* カード共通 */
+.card{
+  background:#fff; border:1px solid var(--border); border-radius:16px; box-shadow:var(--shadow);
+}
+
+/* ヒーローカード */
+.hero{
+  padding:25px; text-align:center;
+}
+
+.hero-mark{width:85px; max-width:40vw; display:block; margin:0px auto;}
+.hero-supervision{margin:5px auto 0;font-size: 0.8rem;}
+.hero-title{font-size:28px; margin:0 0 16px; font-weight:700;}
+.btn-hero{
+  display:inline-block; border:0; color:#fff; cursor:pointer;
+  background:linear-gradient(180deg, var(--primary-1), var(--primary-2));
+  padding:16px 28px; border-radius:999px; font-weight:800; letter-spacing:1px;
+}
+
+/* グリッド（テーマ一覧＋設定） */
+.home-grid{
+  display:grid; gap:20px;
+  /*grid-template-columns:1fr 320px; */
+}
+
+/* テーマ一覧 */
+.card-title{
+  padding:16px 18px; margin:0; font-weight:700; color:#374151;
+  border-bottom:1px solid #f2f4f8;
+}
+.themes{overflow:hidden}
+.table-wrap{padding:10px 14px 18px}
+.theme-table{width:100%; border-collapse:collapse; font-size:14px}
+.theme-table thead th{
+  text-align:left; font-weight:700; color:#6b7280; padding:10px 12px;
+}
+.theme-table tbody td{padding:10px 12px; border-top:1px solid #eef2f7}
+.theme-table tbody tr:hover{background:#fafafa}
+
+/* 設定 */
+.settings{padding-bottom:16px}
+.setting-row{
+  display:grid; grid-template-columns:120px 1fr; gap:10px; align-items:center;
+  padding:12px 16px; border-top:1px solid #f2f4f8;
+}
+.setting-row:first-of-type{border-top:none}
+.setting-row label{color:#6b7280}
+.settings select{
+  width:100%; padding:10px 12px; border:1.5px solid var(--border); border-radius:12px; background:#fff;
+}
+.setting-actions{display:flex; gap:12px; padding:12px 16px 6px; justify-content: center;}
+.btn-save{
+  border:0; color:#fff; background:linear-gradient(180deg, var(--primary-1), var(--primary-2));
+  padding:12px 18px; border-radius:999px; font-weight:700; cursor:pointer;
+}
+.btn-cancel{
+  background:#fff; border:1.5px solid var(--border); color:#374151;
+  padding:12px 18px; border-radius:999px; font-weight:700; cursor:pointer;
+}
+
+/* ボトムメニュー（SPのみ） */
+.bottom-nav{
+  position:fixed; left:50%; transform:translateX(-50%);
+  bottom:5px; width:min(640px, 92vw); background:#fff;
+  border:1px solid var(--border); border-radius:999px; box-shadow:var(--shadow);
+  display:none; justify-content:space-around; padding:5px 14px; z-index:50;
+}
+.bn-item{width:56px; height:56px; display:grid; place-items:center; border-radius:50%}
+.bn-item .bi{width:24px; height:24px; fill:#94a3b8}
+.bn-item.is-active{background:linear-gradient(180deg, var(--primary-1), var(--primary-2));}
+.bn-item.is-active .bi{fill:#fff}
+
+
+/* 設定サマリーの見た目 */
+.setting-summary{
+  display:grid; gap:10px; padding:12px 16px 0;
+}
+.setting-summary div{
+  display:flex; justify-content:space-between; gap:12px;
+  padding:8px 12px; background:#f8fafc; border:1px solid #eef2f7; border-radius:10px;
+}
+.setting-summary label{color:#6b7280}
+
+/* 既存の .settings .setting-actions / .btn-save をそのまま利用 */
+
+ruby {
+  ruby-position: over;  /* ルビは上 */
+}
+rt {
+  font-size: 0.6em;
+  line-height: 1;       /* ★ 余計に行高をとらないように固定 */
+}
+
+/* レスポンシブ */
+@media (max-width: 1024px){
+  .home-layout{grid-template-columns:1fr;padding-bottom: 100px; gap: 0;}
+  .home-grid{grid-template-columns:1fr}
+  .bottom-nav{display:flex}
+  .hero{padding:32px 18px 28px}
+  .hero-title{font-size:24px;}
+  .card-hero-title{display:block; align-items:}
+
+  .hero-mark {
+    width: 220px;
+    max-width: 30vw;
+    display: block;
+    margin: 10px auto 6px;
+}
+}

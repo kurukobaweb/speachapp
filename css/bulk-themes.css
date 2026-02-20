@@ -1,0 +1,36 @@
+    /* ページ専用の軽い装飾 */
+    .bulk-card{max-width:960px;margin:0 auto 24px;background:#fff;border-radius:24px;box-shadow:0 12px 40px rgba(0,0,0,.08);padding:22px}
+    .card-head{margin-bottom:8px}
+    .card-title{margin:0;font-size:22px;font-weight:800;color:#374151}
+    .card-sub{margin:6px 0 0;color:#9ca3af;font-size:13px}
+    .bulk-grid{display:grid;gap:14px}
+    .dropzone{
+      border:2px dashed #cbd5e1;border-radius:16px;background:#f8fafc;padding:20px;text-align:center;cursor:pointer
+    }
+    .dropzone.is-drag{background:#eef6ff;border-color:#93c5fd}
+    .hint{font-size:12px;color:#6b7280;margin-top:-6px}
+    .area-row{display:grid;gap:6px}
+    #themesJson{
+      width:100%;min-height:220px;padding:12px 14px;border:1.5px solid #e5e7eb;border-radius:14px;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace
+    }
+    .bulk-actions{display:flex;gap:10px;justify-content: center;}
+    .btn-primary{display: inline-block;
+    border: 0;
+    color: #fff;
+    cursor: pointer;
+    background: linear-gradient(180deg, var(--primary-1), var(--primary-2));
+    padding: 12px 28px;
+    border-radius: 999px;
+    font-weight: 800;
+    letter-spacing: 1px;}
+    .btn-outline{border:1.5px solid #e5e7eb;background:#fff;color:#1f2937;padding:12px 18px;border-radius:999px;cursor:pointer}
+    #bulkMsg{min-height:1.2em;margin-top:8px;font-weight:700}
+    #bulkMsg.success{color:#15803d}
+    #bulkMsg.error{color:#b91c1c}
+    .preview{display:flex;gap:12px;flex-wrap:wrap;font-size:13px;color:#475569}
+    .preview > div{background:#f1f5f9;padding:6px 10px;border-radius:999px}
+    @media (max-width:768px){
+      .bulk-card{border-radius:28px;padding:18px}
+      .bulk-actions{flex-direction:column}
+      .btn-primary,.btn-outline{flex:1}
+    }

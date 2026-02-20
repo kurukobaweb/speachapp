@@ -1,0 +1,75 @@
+/* ===== register.css ===== */
+
+/* login と同じ外枠を再利用（クラス名だけ別） */
+.auth-wrap{ min-height:calc(100vh - 92px); display:grid; place-items:center; padding:48px 16px; }
+.auth-card{
+  width:min(560px, 92vw);
+  background:var(--card,#fff);
+  border-radius:28px;
+  box-shadow:var(--shadow,0 8px 30px rgba(0,0,0,.08));
+  padding:36px 36px 28px;
+  text-align:center;
+}
+.auth-title{ margin:8px 0 24px; font-size:28px; font-weight:800; letter-spacing:.2px; }
+
+/* 入力（login と同じ） */
+.form-group{ margin:8px 0; text-align:left; }
+.input-wrapper{ position:relative; }
+.auth-card input[type="text"],
+.auth-card input[type="email"],
+.auth-card input[type="password"]{
+  width:100%; padding:16px 20px;
+  border:1.5px solid var(--border,#dde2ec);
+  border-radius:999px; font-size:16px; outline:none; background:#fff;
+}
+.auth-card input::placeholder{ color:#b1b8c8; }
+.auth-card input:focus{ border-color:var(--focus,#5b8cff); box-shadow:0 0 0 3px rgba(91,140,255,0.15); }
+
+.toggle-eye{
+  position:absolute; right:14px; top:50%; transform:translateY(-50%);
+  width:34px; height:34px; cursor:pointer; background:transparent; border:0;
+}
+
+/* ボタン（login と同じ） */
+.btn-primary{
+  width: 50%;
+    border: 0;
+    padding: 12px 20px;
+    border-radius: 999px;
+    cursor: pointer;
+    font-weight: 800;
+    font-size: 16px;
+    background: linear-gradient(180deg, var(--primary-1), var(--primary-2));
+    color: #fff;
+    transition: transform .02s ease, filter .15s ease;
+}
+.btn-outline{
+  width:45%; margin-top:8px;
+  border:1.5px solid var(--border,#dde2ec); background:#fff; color:#111827;
+  padding:12px 16px; border-radius:999px; cursor:pointer;
+}
+
+.helper{ color:var(--muted,#8c94a5); line-height:1.6; }
+.helper.small{ font-size:14px; }
+.link{ color:#111827; text-underline-offset:2px; }
+.link:hover{ opacity:.85; }
+
+.error{ color:#d03939; min-height:1.2em; text-align:left; }
+
+/* ステッパー（現在ステップの視覚化） */
+.stepper{
+  list-style:none; display:flex; justify-content:center; gap:10px; padding:0; margin:6px 0 18px;
+  font-size:12px; color:#6b7280;
+}
+.stepper li{
+  min-width:64px; padding:6px 10px; border-radius:999px; background:#f3f4f6;
+}
+.stepper li.is-active{ color:#fff; background:linear-gradient(180deg, var(--primary-1,#6ea2ff), var(--primary-2,#6b8df0)); }
+
+/* モバイル調整（login と同じ） */
+@media (max-width: 768px){
+  .auth-wrap{ min-height:100vh; padding:24px 12px; }
+  .auth-card{ padding:28px 22px 22px; border-radius:36px; }
+  .auth-title{ font-size:32px; margin-top:8px; }
+  .btn-primary{ padding:12px 22px; font-size:15px; }
+}

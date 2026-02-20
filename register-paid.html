@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>有料登録用ユーザー登録｜スピーチ判定アプリ</title>
+
+  <!-- 共通CSS（loginと同じ） -->
+  <link rel="stylesheet" href="common/header.css">
+  <link rel="stylesheet" href="css/style.css">
+  <!-- ページ固有の少量の追記 -->
+  <link rel="stylesheet" href="css/register.css">
+</head>
+<body>
+
+  <!-- 共通ヘッダー（任意。loginと同じ共通化をする場合） -->
+  <div id="siteHeader" data-header-src="common/header.html"></div>
+
+  <!-- 背景 & ラップ（login と同じスケルトン） -->
+  <div class="page-bg"></div>
+  <div class="auth-wrap"><!-- (= login-wrap 相当) -->
+
+    <section class="auth-card"><!-- (= login-card 相当) -->
+      <h1 class="auth-title">有料版Sign Up</h1>
+      <p class="helper small">メール認証 → コード入力 → 基本情報の順に登録します。</p>
+
+      <!-- 小さなステッパー（現在位置を視覚化） -->
+      <ol class="stepper" aria-label="登録ステップ">
+        <li class="is-active" data-step="1">認証</li>
+        <li data-step="2">コード</li>
+        <li data-step="3">入力</li>
+      </ol>
+
+      <!-- STEP1: メール認証コード送信 -->
+      <div id="step1" class="auth-step">
+        <div class="form-group">
+          <label class="visually-hidden" for="emailForVerif">メールアドレス</label>
+          <input id="emailForVerif" type="email" placeholder="your@example.com">
+        </div>
+        <button id="sendCodeBtn" class="btn-primary">認証コード送信</button>
+        <button id="regCancelBtn" type="button" class="btn-outline">キャンセル</button>
+        <p id="step1Error" class="error"></p>
+      </div>
+
+      <!-- STEP2: 認証コード入力 -->
+      <div id="step2" class="auth-step" style="display:none;">
+        <div class="form-group">
+          <label class="visually-hidden" for="codeInput">認証コード</label>
+          <input id="codeInput" type="text" inputmode="numeric" maxlength="6" placeholder="123456">
+        </div>
+        <button id="verifyCodeBtn" class="btn-primary">コードを確認</button>
+        <p id="step2Error" class="error"></p>
+      </div>
+
+      <!-- STEP3: 本登録フォーム -->
+      <div id="step3" class="auth-step" style="display:none;">
+        <div class="form-group">
+          <label class="visually-hidden" for="regName">お名前</label>
+          <input id="regName" type="text" placeholder="山田 太郎">
+        </div>
+        <div class="form-group">
+          <label class="visually-hidden" for="regAff">所属</label>
+          <input id="regAff" type="text" placeholder="所属を入力">
+        </div>
+        <div class="form-group">
+          <label class="visually-hidden" for="regPwd">パスワード</label>
+          <div class="input-wrapper">
+            <input id="regPwd" type="password" placeholder="8文字以上">
+            <span class="toggle-eye" data-target="regPwd" aria-label="パスワード表示切替" role="button" tabindex="0"></span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="visually-hidden" for="regPwdC">パスワード（確認）</label>
+          <div class="input-wrapper">
+            <input id="regPwdC" type="password" placeholder="もう一度入力">
+            <span class="toggle-eye" data-target="regPwdC" aria-label="パスワード表示切替" role="button" tabindex="0"></span>
+          </div>
+        </div>
+
+        <button id="regSubmitBtn" class="btn-primary">登録して支払い情報入力へ</button>
+        <button type="button" class="btn btn-outline reg-cancel">キャンセル</button>
+        <p id="step3Error" class="error"></p>
+      </div>
+
+      <p class="helper small" style="margin-top:10px;">
+        すでにアカウントをお持ちですか？ <a class="link" href="login.html">ログイン</a>
+      </p>
+    </section>
+  </div>
+  <script>window.API_BASE = `${location.protocol}//${location.hostname}:8200`;</script>
+
+<script type="module" src="/js/config.js"></script>
+<script type="module" src="/js/login.js"></script>
+  <!-- 既存スクリプト -->
+  <script type="module" src="js/toggleeye.js" defer></script>
+  <script type="module" src="js/register-paid.js" defer></script>
+  <!-- 共通ヘッダーローダー（共通化している場合） -->
+  <script type="module" src="common/header.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!-- SPボトムナビ本体 -->
+<nav class="bottom-nav" role="navigation" aria-label="SP メインメニュー">
+  <!-- 必要アイコン（Bootstrap Icons）スプライト -->
+  <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+    <symbol id="bi-house" viewBox="0 0 16 16">
+      <path d="M8.354 1.146a.5.5 0 0 0-.708 0L1 7.793V14.5A1.5 1.5 0 0 0 2.5 16h3A1.5 1.5 0 0 0 7 14.5V11h2v3.5A1.5 1.5 0 0 0 10.5 16h3A1.5 1.5 0 0 0 15 14.5V7.793z"/>
+    </symbol>
+    <symbol id="bi-card-list" viewBox="0 0 16 16">
+      <path d="M14 4.5a.5.5 0 0 1-.5.5H6a.5.5 0 0 1 0-1h7.5a.5.5 0 0 1 .5.5m0 3a.5.5 0 0 1-.5.5H6a.5.5 0 0 1 0-1h7.5a.5.5 0 0 1 .5.5m0 3a.5.5 0 0 1-.5.5H6a.5.5 0 0 1 0-1h7.5a.5.5 0 0 1 .5.5"/>
+      <path d="M5 5.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0m0 3a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0m0 3a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0"/>
+    </symbol>
+        <symbol id="bi-score" viewBox="0 0 16 16">
+      <path d="M0 0h1v15h15v1H0zm14.817 3.113a.5.5 0 0 1 .07.704l-4.5 5.5a.5.5 0 0 1-.74.037L7.06 6.767l-3.656 5.027a.5.5 0 0 1-.808-.588l4-5.5a.5.5 0 0 1 .758-.06l2.609 2.61 4.15-5.073a.5.5 0 0 1 .704-.07"/>
+    </symbol>
+    <symbol id="bi-person" viewBox="0 0 16 16">
+      <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path d="M14 14s-1-1.5-6-1.5S2 14 2 14s1-4 6-4 6 4 6 4z"/>
+    </symbol>
+    <symbol id="bi-gear" viewBox="0 0 16 16">
+      <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492"/>
+      <path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.433 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.433-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52z"/>
+    </symbol>
+  </svg>
+
+<!-- ここだけ差し替え：href をすべてルート相対に -->
+<a class="bn-item" href="/index.html" data-match="home" aria-label="ホーム">
+  <svg class="bi"><use href="#bi-house"/></svg><span>Home</span>
+</a>
+<a class="bn-item" href="/html/themes.html" data-match="themes" aria-label="テーマ一覧">
+  <svg class="bi"><use href="#bi-card-list"/></svg><span>Themes</span>
+</a>
+<a class="bn-item" href="/html/score.html" data-match="score" aria-label="スコア">
+  <svg class="bi"><use href="#bi-score"/></svg><span>score</span>
+</a>
+<button class="bn-item btn-setting" type="button" aria-label="設定">
+  <svg class="bi"><use href="#bi-gear"/></svg><span>setting</span>
+</button>
+<!-- <a class="bn-item" href="/html/profile.html" data-match="profile" aria-label="プロフィール">
+  <svg class="bi"><use href="#bi-person"/></svg><span>profile</span>
+</a>-->
+
+</nav>
+
+<script>
+/* active 表示 */
+(function(){
+  var path = location.pathname;
+  document.querySelectorAll('.bottom-nav .bn-item[href]').forEach(function(a){
+    if(path.includes(a.getAttribute('data-match'))) a.classList.add('is-active');
+  });
+})();
+</script>

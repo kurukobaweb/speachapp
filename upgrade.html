@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>有料プラン登録</title>
+    <!-- favicon 404 を消したい場合（任意） -->
+  <link rel="icon" href="data:,">
+
+  <!-- 既存共通スタイル -->
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="stylesheet" href="common/header.css"/>
+
+  <!-- billingページ固有（最小） -->
+
+  <link rel="stylesheet" href="css/upgrade.css">
+</head>
+<body>
+<div id="siteHeader"></div>
+
+<!-- 背景（既存デザインに合わせる） -->
+<div class="page-bg"></div>
+  <main class="auth-wrap">
+    <section class="auth-card">
+      <h1 class="auth-title">有料プランアップグレード</h1>
+
+      <div id="who" class="helper small"></div>
+      <p id="err" class="error"></p>
+
+<!-- Pro (ChatGPT風) -->
+<div class="card pricing-card pricing-card--main pricing-card--business">
+
+  <h3 class="pricing-title">有料プラン</h3>
+
+  <div class="pricing-price pricing-price--big">
+    <span class="yen">¥</span>660
+    <span class="per">/ 月(税込)</span>
+  </div>
+
+  <p class="pricing-sub">
+    スピーチ学習を、分析と履歴で“伸びる形”に最適化
+  </p>
+
+  <ul class="pricing-features">
+    <li>
+      <span class="fi" aria-hidden="true">
+        <!-- 分析アイコン -->
+        <svg viewBox="0 0 24 24"><path d="M4 19V5m0 14h16M8 15v-4m4 4V7m4 8v-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </span>
+      <span class="ft">詳細スコア分析</span>
+    </li>
+
+    <li>
+      <span class="fi" aria-hidden="true">
+        <!-- タイマー -->
+        <svg viewBox="0 0 24 24"><path d="M9 2h6M12 8v5l3 2M7.5 4.5 6 3M16.5 4.5 18 3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M12 21a8 8 0 1 0-8-8 8 8 0 0 0 8 8Z" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+      </span>
+      <span class="ft">時間設定（10〜120秒）</span>
+    </li>
+
+    <li>
+      <span class="fi" aria-hidden="true">
+        <!-- 全テーマ -->
+        <svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h10M4 17h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </span>
+      <span class="ft">全テーマ利用可能</span>
+    </li>
+
+    <li>
+      <span class="fi" aria-hidden="true">
+        <!-- グラフ -->
+        <svg viewBox="0 0 24 24"><path d="M4 19V5m0 14h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M7 15l4-4 3 3 5-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+      <span class="ft">履歴・成長グラフ</span>
+    </li>
+  </ul>
+
+<a href="/pay.html?plan=pro_monthly" class="btn btn--blue btn--full">
+  有料プランにアップグレードする
+</a>
+  <div class="pricing-note">
+    ※無料お試し（1週間）終了後も、いつでもアップグレードできます。
+  </div>
+</div>
+
+
+      <button id="backProfile" class="btn-outline" type="button">戻る</button>
+    </section>
+  </main>
+<script>
+  window.API_BASE = "http://localhost:8200"; // ←ここを「実際にAPIが動いているURL」にする
+</script>
+<script type="module" src="/js/config.js"></script>
+
+  <script type="module" src="js/toggleeye.js"></script>
+
+
+<script type="module" src="/common/header.js" defer></script>
+  <script type="module" src="/js/upgrade.js"></script>
+</body>
+</html>

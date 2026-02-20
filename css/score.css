@@ -1,0 +1,226 @@
+/* ====== カード共通 ====== */
+.card{
+  background: var(--card, #fff);
+  border-radius: 20px;
+  box-shadow: var(--shadow, 0 8px 24px rgba(0,0,0,.08));
+  padding: 18px 18px 16px;
+}
+.card-title{ font-size: 18px; font-weight: 800; margin: 4px 0 10px; }
+.card-link { display:block; color:inherit; text-decoration:none; }
+.passed-graph{display:flex;align-items:center;gap:16px;}
+/* ====== レイアウト ====== */
+.score-layout{max-width: 1200px; display:grid; grid-template-columns:260px 1fr; gap:16px;  margin: 0 auto; padding: 20px; }
+.score-main{ display:grid; gap:16px; }
+.score-top{display: flex; gap: 12px;}
+.score-list{min-height: 520px;position: relative;}
+/* ====== ヒーロー ====== */
+/*.score-hero{ display:grid; grid-template-columns:1fr auto; align-items:center; gap:12px; }*/
+.score-hero{  height: 200px;}
+.score-hero .title{ font-size:22px; font-weight:800; margin:0 0 4px; }
+.score-hero .sub{ color:#6b7280; margin:0;}
+.kpis{ display:flex; gap:14px; }
+.kpi{ min-width:140px; background:#fff; border:1px solid var(--border, #e5e7eb); border-radius:16px; padding:10px 14px; text-align:right; }
+.kpi-label{ font-size:12px; color:#6b7280; }
+.kpi-value{ font-size:26px; font-weight:800; }
+
+/* ====== フィルタ ====== */
+.score-filter .filter-row, .score-filter .search-row{ display:flex; gap:10px; align-items:center;margin:4px 0;}
+.score-filter select, .score-filter input[type="text"]{
+  padding:10px 12px; border:1.5px solid var(--border, #e5e7eb); border-radius:12px; font-size:14px; outline:none;
+}
+.score-filter input[type="text"]:focus{ border-color:var(--focus,#6b8df0); box-shadow:0 0 0 3px rgba(91,140,255,.15); }
+
+/* ====== 最新ハイライト ====== */
+.latest-card .latest-content{ display:grid; grid-template-columns:1fr auto auto; gap:14px; align-items:center; }
+.latest-card{  height:200px;max-width: 485px; }
+.latest-big{ display:flex; flex-direction:column; gap:6px; }
+.big-score{
+  font-size:40px; font-weight:900;
+  background:linear-gradient(180deg, var(--primary-1,#6ea2ff), var(--primary-2,#6b8df0));
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+}
+.big-meta{ color:#6b7280; }
+.latest-mini{ color:#374151; }
+.btn-search{
+  width:20%;
+  border:0;
+  padding:7px 5px;
+  border-radius:999px;
+  cursor:pointer;
+  font-weight:800;
+  font-size:14px;
+  background:linear-gradient(180deg, var(--primary-1), var(--primary-2));
+  color:#fff;
+  transition:transform .02s ease, filter .15s ease;}
+/* ====== 表 ====== */
+.table-wrap{ overflow:auto; }
+.score-table{ width:100%; border-collapse:collapse; font-size: 12.5px;}
+.score-table th, .score-table td{ padding:10px 8px; border-bottom:1px solid #e5e7eb; white-space:nowrap; }
+.score-table th{ text-align:left; font-size:13px; color:#6b7280; font-weight:700; }
+.score-table td.score{ font-weight:800; }
+
+/* ====== ページャ ====== */
+.pager{ display:flex; align-items:center; justify-content:center; gap:12px; margin-top:10px;     position: absolute;
+    bottom: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+  padding: 10px 0 14px;}
+
+/* ====== 詳細モーダル ====== */
+.detail-card{ position:relative; width:min(980px, 96vw); }
+.detail-title{ font-size:18px; font-weight:800; margin:0 0 10px; }
+.detail-grid{ display:grid; grid-template-columns:280px 1fr; gap:16px; }
+.detail-meta > div{ display:flex; justify-content:space-between; gap:8px; padding:8px 10px; border:1px solid #e5e7eb; border-radius:12px; margin-bottom:8px; }
+.detail-meta label{ color:#6b7280; }
+.detail-texts{ display:grid; gap:12px; }
+.detail-box{ border:1px solid #e5e7eb; border-radius:12px; padding:10px; }
+.detail-label{ font-size:12px; color:#6b7280; margin-bottom:6px; }
+.detail-pre{
+  margin:0; padding:10px; background:#f8fafc; border-radius:8px; max-height:220px; overflow:auto;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  white-space: pre-wrap;
+}
+
+.overlay{
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+/* ====== 初期表示バグ回避（最重要） ======
+   既存の style.css で .overlay が常時 display:flex 指定。
+   hidden 属性を付けた overlay は確実に非表示にする。 */
+.overlay[hidden]{ display:none !important; }
+/* モーダル本体ははみ出し時に内部スクロール */
+.overlay-card{ max-height: 90vh; overflow: auto; }
+
+/* ★ モーダル中は背面をスクロール不可に */
+body.modal-open{
+  position: fixed;
+  width: 100%;
+  overflow: hidden;
+}
+/* ルビを保ったまま1行省略（…）表示 */
+.title-ellipsis{
+  display:inline-block;
+  max-width: 540px;           /* ←お好みで調整（テーブルセルは狭めに） */
+  /*white-space: nowrap;*/
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: bottom;
+}
+.table-title-ellipsis{
+  display:inline-block;
+  max-width: 180px;           /* テーブル用に少し短め */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: bottom;
+}
+/* カード全体をリンクに */
+.card-link{ display:block; color:inherit; text-decoration:none; }
+
+/* 円形ゲージ */
+.gauge{ width:120px; height:120px; }
+.gauge-bg{
+  fill:none; stroke: #e5e7eb; stroke-width: 12;
+}
+.gauge-fg{
+  fill:none; stroke: var(--focus, #6b8df0); stroke-width: 12;
+  stroke-linecap: round;
+  transform: rotate(-90deg);
+  transform-origin: 60px 60px;
+}
+.gauge-text{ font-size: 22px; font-weight: 800; fill:#111827; }
+
+/* 省略表示は従来通り（title-ellipsis / table-title-ellipsis） */
+
+.achieveCard-title{display: flex;    justify-content: space-between;}
+
+/* ====== SP ====== */
+@media (max-width: 1024px){
+  .score-layout{ grid-template-columns:1fr; }
+  #siteSidebar{ display:none; }
+  .detail-grid{ grid-template-columns:1fr; }
+  .latest-card .latest-content{ grid-template-columns:1fr; }
+  .score-top {flex-direction: column}
+  
+}
+
+/* ====== モバイル リスト（カード） ====== */
+.score-list-mobile{ display:none; }
+
+.score-card{
+  border:1px solid #e5e7eb; border-radius:16px; padding:10px 12px; margin:10px 0;
+  display:grid; gap:6px;
+  grid-template-columns: 1fr auto;
+  grid-template-areas:
+    "date   score"
+    "meta   score"
+    "title  title"
+    "time   action";
+}
+.score-card .date   { grid-area: date;  color:#374151; }
+.score-card .meta   { grid-area: meta;  color:#374151; display:flex; gap:14px; align-items: center}
+.score-card .title  { grid-area: title; }
+.score-card .score  { grid-area: score; font-weight:800; font-size:18px; align-self:center; }
+.score-card .time   { grid-area: time;  color:#6b7280; }
+.score-card .action { grid-area: action; justify-self:end; }
+
+.score-card .title .table-title-ellipsis{ max-width: 100%; }
+/* ページャがabsoluteで重なる分の逃げ（PC/共通） */
+.score-list{
+  padding-bottom: 72px; /* ← pager分の余白。必要なら増減 */
+}
+@media (min-width: 1025px){
+  .score-list{
+  width: 910px;
+}
+}
+/* ====== ブレークポイント：SPでは表を隠し、カードを表示 ====== */
+@media (max-width: 640px){
+  .table-wrap{ display:none; }
+  .score-list-mobile{ display:block; }
+.score-layout{padding-bottom: 120px;}
+.latest-card {
+    height: auto;
+}
+.meta_score{
+  display: flex;
+  align-items: center;
+        justify-content: space-between;
+}
+.search-row {
+    flex-wrap: nowrap !important;
+}
+.filter-row {
+    flex-wrap: wrap;
+}
+.score-list {
+    min-height: 860px;
+}
+  .pager{
+    position: relative;      /* absolute をやめる */
+    left: auto;
+    bottom: auto;
+    transform: none;
+    margin: 12px auto 0;     /* 下に自然に配置 */
+    padding: 10px 0 14px;
+  }
+
+  /* ボトムナビの分、ページ最下部に余白を確保（既にpadding-bottom:120pxあり） */
+  .score-layout{ padding-bottom: 140px; } /* 120でも可。重なるなら増やす */
+
+/*.overlay{
+        padding: 150px 20px 120px;
+        overflow-y: auto;
+
+}*/
+.passed-graph{
+        flex-wrap: wrap;
+    justify-content: center;}
+}
+

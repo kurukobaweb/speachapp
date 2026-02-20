@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ユーザー管理｜管理画面</title>
+
+  <!-- 共通CSS -->
+  <link rel="stylesheet" href="../common/header.css">
+  <link rel="stylesheet" href="../common/sidebar.css">
+  <link rel="stylesheet" href="../common/bottom-nav.css">
+
+  <!-- 共通のレイアウト系（homeで使っているものがあれば流用） -->
+  <link rel="stylesheet" href="../css/home.css">
+  <link rel="stylesheet" href="../css/setting.css">
+
+  <!-- ベース -->
+  <link rel="stylesheet" href="../css/style.css">
+  <!-- 管理画面専用 -->
+  <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+
+  <!-- 共通ヘッダー -->
+  <div id="siteHeader" data-header-src="../common/header.html"></div>
+
+  <!-- 背景 & レイアウト -->
+  <div class="page-bg"></div>
+  <div class="home-layout">
+    <!-- 共通サイドバー（PC） -->
+    <div id="siteSidebar" data-sidebar-src="../common/sidebar.html"></div>
+
+    <main class="home-main">
+      <div class="page-inner">
+        <!-- カード -->
+<!-- ここを置き換え -->
+<section class="card admin-card">
+  <header class="card-head">
+    <h2 class="card-title">ユーザー管理</h2>
+    <p class="card-sub">所属で絞り込み・ユーザー情報の更新／削除ができます。</p>
+  </header>
+
+  <div class="admin-toolbar">
+    <div class="filter">
+      <label for="filterAffiliation" class="filter-label">所属で絞り込み</label>
+      <select id="filterAffiliation" class="filter-select">
+        <option value="all">すべて</option>
+      </select>
+    </div>
+  <button id="openCreateModal" class="apply-btn">新規追加</button>
+  </div>
+
+      <!-- ② ページ末尾（</main> の直前か </body> の直前）にモーダルHTMLを追加 -->
+<!-- ページ末尾（</main>手前でもOK）に追加：新規ユーザー追加モーダル -->
+ 
+<div id="createModal" class="modal newuser-card" style="display:none;">
+  <div class="modal__overlay" data-close="1"></div>
+  <div class="modal__dialog">
+    <header class="modal__header">
+      <h3>新規ユーザー追加</h3>
+    </header>
+
+    <div class="modal__body">
+      <div class="uc-grid">
+    <div class="uc-row">
+      <div class="uc-label">名前</div>
+      <div class="uc-field"><input id="createName" type="text" placeholder="例）山田 太郎"></div>
+    </div>
+    <div class="uc-row">
+      <div class="uc-label">所属</div>
+      <div class="uc-field"><input id="createAff" type="text" placeholder="例）A中学校"></div>
+    </div>
+    <div class="uc-row">
+      <div class="uc-label">Email</div>
+      <div class="uc-field"><input id="createEmail" type="email" placeholder="name@example.com"></div>
+    </div>
+    <div class="uc-row">
+      <div class="uc-label">Role</div>
+      <div class="uc-field">
+        <select id="createRole">
+          <option value="user">user</option>
+          <option value="teacher">teacher</option>
+          <option value="admin">admin</option>
+          <option value="owner">owner</option>
+        </select>
+      </div>
+    </div>
+        <div class="uc-row">
+      <div class="uc-label">Course</div>
+      <div class="uc-field">
+        <select id="createCourse">
+          <option value="free">free</option>
+          <option value="basic">basic</option>
+          <option value="pro">pro</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="uc-row">
+      <div class="uc-label">パスワード</div>
+        <div class="input-wrapper">
+
+      <div class="uc-field"><input id="createPass" type="password" placeholder="8文字以上">
+      <span class="toggle-eye" data-target="createPass"></span>
+      </div>
+</div>
+    </div>
+    <div class="uc-row">
+      <div class="uc-label">パスワード（確認）</div>
+        <div class="input-wrapper">
+
+      <div class="uc-field"><input id="createPass2" type="password" placeholder="もう一度入力">
+                      <span class="toggle-eye" data-target="createPass2"></span>
+
+</div></div>
+    </div>
+      </div>
+    </div>
+
+    <footer class="modal__footer uc-actions">
+      <button id="createSubmit" class="btn-update">作成する</button>
+      <button class="btn-cancel" data-close="1">キャンセル</button>
+    </footer>
+  </div>
+</div>
+
+  <!-- ↓ここだけスクロール -->
+  <div class="admin-scroller">
+    <div id="adminCards" class="user-cards"></div>
+    <div id="adminEmpty" class="empty" style="display:none;">ユーザーがいません</div>
+    <div id="adminLoading" class="loading">読み込み中…</div>
+  </div>
+</section>
+
+
+      </div>
+
+
+
+    </main>
+  </div>
+
+  <!-- SPボトムナビ -->
+<div id="siteBottomNav" data-bottom-src="/common/bottom-nav.html"></div>
+<script>window.API_BASE = `${location.protocol}//${location.hostname}:8200`;</script>
+  <!-- 設定モーダル（必要なら） -->
+  <div id="settingModal"></div>
+
+  <!-- 共通ローダー -->
+  <script type="module" src="../common/header.js" defer></script>
+  <script type="module" src="../common/sidebar.js" defer></script>
+  <script type="module" src="../common/bottom-nav-loader.js" defer></script>
+
+
+  <!-- 目アイコン（admin.jsが window.initEyeToggle を呼ぶ前提） -->
+  <script type="module" src="../js/toggleeye.js" defer></script>
+<script type="module" src="../js/setting.js" defer></script>
+
+  <!-- 管理画面ロジック -->
+  <script type="module" src="../js/admin.js" defer></script>
+
+</body>
+</html>

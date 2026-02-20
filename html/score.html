@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>スコア一覧</title>
+
+  <!-- 共通（../ が必要） -->
+  <link rel="stylesheet" href="../common/header.css">
+  <link rel="stylesheet" href="../common/sidebar.css">
+  <link rel="stylesheet" href="../common/bottom-nav.css">
+      <link rel="stylesheet" href="../css/setting.css">
+
+
+  <!-- 既存の全体スタイル -->
+  <link rel="stylesheet" href="../css/style.css">
+  <!-- このページ専用 -->
+  <link rel="stylesheet" href="../css/score.css">
+</head>
+<body>
+  <!-- 共通ヘッダー -->
+  <div id="siteHeader" data-header-src="../common/header.html"></div>
+
+  <div class="page-bg"></div>
+
+  <div class="score-layout">
+    <!-- サイドバー（PC） -->
+    <div id="siteSidebar" data-sidebar-src="../common/sidebar.html"></div>
+
+    <!-- メイン -->
+    <main class="score-main">
+        <div class="score-top">
+      <section class="card score-hero">
+        <div class="hero-left">
+          <h1 class="title">スコア</h1>
+          <p class="sub">保存済みの採点結果を一覧・検索・詳細確認できます。</p>
+        </div>
+        <div class="hero-right">
+          <div class="kpis">
+            <div class="kpi"><div class="kpi-label">平均スコア</div><div class="kpi-value" id="kpiAvg">--</div></div>
+            <div class="kpi"><div class="kpi-label">件数</div><div class="kpi-value" id="kpiCount">--</div></div>
+          </div>
+        </div>
+      </section>
+
+
+
+<!-- 合格率カード（score.html のフィルタ直下に追加） -->
+       <a id="achLink" class="card-link" href="score-detail.html" aria-label="スコア詳細へ">
+
+<section class="card" id="achieveCard">
+    <div class="achieveCard-title">
+  <h3 class="card-title">合格率</h3>
+<p class="card-title">»</p></div>
+  <!-- ここからを a でラップ -->
+    <div class="passed-graph">
+      <svg class="gauge" id="achGauge" viewBox="0 0 120 120" aria-label="合格率">
+        <circle class="gauge-bg" cx="60" cy="60" r="52"></circle>
+        <circle class="gauge-fg" cx="60" cy="60" r="52" stroke-dasharray="0 999"></circle>
+        <text class="gauge-text" x="60" y="66" text-anchor="middle">--%</text>
+      </svg>
+      <div style="display:flex;gap:12px;">
+        <div class="kpi"><div class="kpi-label">合格テーマ数</div><div class="kpi-value" id="achDone">0</div></div>
+        <div class="kpi"><div class="kpi-label">総テーマ数</div><div class="kpi-value" id="achTotal">0</div></div>
+      </div>
+    </div>
+
+</section>
+  </a>
+
+
+</div>
+      <section class="card score-list">
+
+              <div class="score-filter">
+                                <h3 class="card-title">スコア一覧</h3>
+
+        <div class="filter-row">
+          <select id="filterLevel">
+<option value="">全てのLV</option>          </select>
+          <select id="filterType">
+<option value="">全てのタイプ</option>          </select>
+          <select id="filterOrder">
+            <option value="desc">新しい順</option>
+            <option value="asc">古い順</option>
+            <option value="score_desc">高得点順</option>
+            <option value="score_asc">低得点順</option>
+          </select>
+          <button id="btnReset" class="btn-outline">リセット</button>
+        </div>
+        <div class="search-row">
+          <input id="keyword" type="text" placeholder="お題・メモ・display_id で検索"/>
+          <button id="btnSearch" class="btn-search">検索</button>
+        </div>
+    
+        <div class="table-wrap">
+          <table class="score-table">
+            <thead>
+            <tr>
+            <th class="col-date">日付</th>
+            <th class="col-level">LV</th>
+            <th class="col-no">No.</th>
+            <th class="col-type">タイプ</th>
+            <th class="col-title">お題</th>
+            <th class="col-score">スコア</th>
+            <th class="col-duration">時間</th>
+            <th class="col-actions">操作</th>
+            </tr>            
+        </thead>
+            <tbody id="scoreTbody"></tbody>
+          </table>
+        </div>
+        <!-- SP専用：カード型リスト（CSSでSP時のみ表示） -->
+        <div id="scoreListMobile" class="score-list-mobile"></div>
+        <div class="pager">
+          <button id="prevPage" class="btn-outline" disabled>←</button>
+          <span id="pageInfo">1 / 1</span>
+          <button id="nextPage" class="btn-outline" disabled>→</button>
+        </div></div>
+      </section>
+    </main>
+  </div>
+
+  <!-- ボトムメニュー（SP） -->
+  <div id="siteBottomNav" data-bottom-src="../common/bottom-nav.html"></div>
+<!-- 設定モーダル（setting.js が注入） 
+<div id="settingModal"></div>-->
+  <!-- 詳細モーダル（初期は非表示） -->
+  <div class="overlay" id="detailOverlay" hidden>
+    <div class="overlay-card detail-card">
+      <button class="overlay-close" id="detailClose" aria-label="閉じる">&times;</button>
+      <h3 class="detail-title">スコア詳細</h3>
+      <div class="detail-grid">
+        <div class="detail-meta">
+          <div><label>日時</label><span id="dAt">--</span></div>
+          <div><label>LV</label><span id="dLevel">--</span></div>
+                    <div><label>No.</label><span id="dNo">--</span></div>
+
+          <div><label>タイプ</label><span id="dType">--</span></div>
+          <div><label>通番</label><span id="dDisplayId">--</span></div>
+          <div><label>スコア</label><span id="dScore">--</span></div>
+          <div><label>時間</label><span id="dDuration">--</span></div>
+        </div>
+        <div class="detail-texts">
+                      <div class="detail-box"><div class="detail-label">お題</div><pre id="dTitle" class="detail-pre">--</pre></div>
+
+          <div class="detail-box"><div class="detail-label">文字起こし（通常）</div><pre id="dTranscriptRaw" class="detail-pre"></pre></div>
+          <div class="detail-box"><div class="detail-label">文字起こし（ひらがな）</div><pre id="dTranscriptKana" class="detail-pre"></pre></div>
+        </div>
+      </div>
+      <div class="overlay-actions">
+        <button id="btnExportJson" class="btn-outline">JSONで書き出し</button>
+        <!--<button id="btnDelete" class="btn-outline">この記録を削除</button>-->
+      </div>
+    </div>
+  </div>
+  <script>window.API_BASE = `${location.protocol}//${location.hostname}:8200`;</script>
+
+<script type="module" src="../js/config.js"></script>
+<script type="module" src="../js/api.js"></script>
+<!-- 共通ローダー -->
+<script type="module" src="../common/header.js" defer></script>
+<script type="module" src="../common/sidebar.js" defer></script>
+<script type="module" src="../common/bottom-nav-loader.js" defer></script>
+<script type="module" src="../common/filter-options.js" defer></script>
+
+    <!-- 既存JS（設定モーダル） -->
+    <script type="module" src="../js/setting.js" defer></script>
+  <!-- ページ専用 -->
+  <script type="module" src="../js/score.js" defer></script>
+</body>
+</html>

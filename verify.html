@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head><meta charset="UTF-8"><title>認証結果｜スピーチ判定</title></head>
+<body>
+  <div id="message">確認中…</div>
+  <script>
+    (async ()=>{
+      const params = new URLSearchParams(location.search);
+      if (params.get('status')==='success') {
+        document.getElementById('message').textContent = 'メール認証が完了しました！ログインへどうぞ。';
+      } else {
+        document.getElementById('message').textContent = '認証に失敗しました。リンクが正しいかご確認ください。';
+      }
+    })();
+  </script>
+</body>
+</html>

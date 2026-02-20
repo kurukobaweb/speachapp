@@ -1,0 +1,140 @@
+<!-- header.html -->
+<header class="site-header">
+  <!-- Bootstrap Icons sprite (必要分だけ定義) -->
+  <svg xmlns="http://www.w3.org/2000/svg" style="display:none;">
+    <symbol id="bi-house" viewBox="0 0 16 16">
+      <path d="M8.354 1.146a.5.5 0 0 0-.708 0L1 7.793V14.5A1.5 1.5 0 0 0 2.5 16h3A1.5 1.5 0 0 0 7 14.5V11h2v3.5A1.5 1.5 0 0 0 10.5 16h3A1.5 1.5 0 0 0 15 14.5V7.793l-6.646-6.647z"/>
+    </symbol>
+    <symbol id="bi-gear" viewBox="0 0 16 16">
+  <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492M5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0"/>
+  <path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115z"/>
+    </symbol>
+    <symbol id="bi-box-arrow-right" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M6 3a1 1 0 0 0-1 1v2h1V4h7v8H6v-2H5v2a1 1 0 0 0 1 1h7a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H6z"/>
+      <path fill-rule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146-.708.708-3-3z"/>
+    </symbol>
+    <symbol id="bi-box-arrow-in-right" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0z"/>
+  <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z"/>
+    </symbol>
+    <symbol id="bi-person-circle" viewBox="0 0 16 16">
+      <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+      <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+    </symbol>
+    <!-- 追加: ハンバーガー/閉じる -->
+<symbol id="bi-list" viewBox="0 0 16 16">
+  <path d="M2.5 12.5a.5.5 0 0 1 0-1h11a.5.5 0 0 1 0 1h-11zm0-4a.5.5 0 0 1 0-1h11a.5.5 0 0 1 0 1h-11zm0-4a.5.5 0 0 1 0-1h11a.5.5 0 0 1 0 1h-11z"/>
+</symbol>
+<symbol id="bi-x-lg" viewBox="0 0 16 16">
+  <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
+</symbol>
+        <symbol id="bi-comment" viewBox="0 0 16 16">
+      <path d="M2 1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h9.586a2 2 0 0 1 1.414.586l2 2V2a1 1 0 0 0-1-1zm12-1a2 2 0 0 1 2 2v12.793a.5.5 0 0 1-.854.353l-2.853-2.853a1 1 0 0 0-.707-.293H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z"/>
+  <path d="M5 6a1 1 0 1 1-2 0 1 1 0 0 1 2 0m4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0m4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>
+    </symbol>
+  </svg>
+
+  <div class="header-inner">
+    <div class="brand">
+      <a class="nav-item" href="/index.html">
+      <img src="/../images/logo_speech.png" alt="NPO法人日本語スピーチ協会 監修" class="brand-logo">
+      <div class="brand-text">
+        <div class="brand-line-ja">NPO法人日本語スピーチ協会 監修</div>
+        <div class="brand-line-app">日本語スピーチ判定アプリ</div>
+      </div>
+      </a>
+    </div>
+    <!-- ▼ 追加：ハンバーガー（PCではCSSで非表示） -->
+    <button id="menuToggle" class="hamburger" aria-controls="mobileDrawer"
+            aria-expanded="false" aria-label="メニューを開く">
+      <svg width="24" height="24" viewBox="0 0 16 16" aria-hidden="true">
+        <path d="M2 3h12v2H2zM2 7h12v2H2zM2 11h12v2H2z"></path>
+      </svg>
+    </button>
+
+  <!-- id を付与（JSが参照） -->
+  <nav id="siteNav" class="nav" aria-label="メインメニュー">
+          <a class="nav-item" href="/index.html">
+        <svg class="bi"><use href="#bi-house"/></svg><span>Home</span>
+      </a>
+<a href="javascript:void(0)" class="nav-item btn-setting">
+  <svg class="bi"><use href="#bi-gear"/></svg><span>Setting</span>
+</a>
+
+      <a id="headerLoginLink" class="nav-item" href="/login.html">
+        <svg class="bi"><use href="#bi-box-arrow-in-right"/></svg><span>Login</span>
+      </a>
+      <a class="nav-item profile" href="/html/profile.html" aria-label="Profile">
+        <svg class="bi"><use href="#bi-person-circle"/></svg><span>Profile</span>
+      </a>
+    </nav>
+  </div>
+  <!-- 追加: バックドロップ（モバイル時に使用） -->
+<div id="navBackdrop" class="nav-backdrop" hidden></div>
+</header>
+
+<!-- ▼ 追加：モバイル用のドロワー（右スライド） -->
+<aside id="mobileDrawer" class="drawer"
+       role="dialog" aria-modal="true"
+       aria-hidden="true" hidden>  <div class="drawer-header">
+    <span>メニュー</span>
+    <button id="drawerClose" class="drawer-close" aria-label="メニューを閉じる">×</button>
+  </div>
+  <div class="drawer-body" id="drawerBody"></div>
+</aside>
+
+<div id="drawerBackdrop" class="drawer-backdrop" hidden></div>
+
+
+<!-- ※ PC用サイドバーを使っている場合は要 id（例） -->
+<aside id="appSidebar" class="sidebar-sp" >
+  <!-- 管理者メニュー：見出しは teacher / admin / owner に表示 -->
+
+  <nav class="side-nav"><div class="side-admin-group" data-requires-role="admin,owner,teacher">
+
+  <div class="side-section">管理者メニュー</div>
+
+  <!-- ユーザー管理：teacher / admin / owner に表示 -->
+  <a class="side-item"
+     href="/admin/admin.html"
+     data-match="admin-users"
+     data-requires-role="admin,owner,teacher">
+    <svg class="bi"><use href="#bi-person"/></svg> ユーザー管理
+  </a>
+
+  <!-- テーマ管理：admin / owner のみ表示（teacher は非表示） -->
+    <!--<a class="side-item"
+     href="/admin/bulk-themes.html"
+     data-match="admin-themes"
+     data-requires-role="admin,owner">
+    <svg class="bi"><use href="#bi-journal-text"/></svg> テーマ管理
+  </a> -->
+<!-- 例: /common/right-menu.html や header内のドロワーリスト -->
+</div>
+<div class="side-title">message</div>
+<a class="side-item" href="#" data-match="messages">
+  <svg class="bi"><use href="#bi-comment"/></svg> 笈川理事長メッセージ
+</a>
+
+    <div class="side-title">LINK</div>
+    <a class="side-item" href="https://edu.modern.co.jp" data-match="edu"  target="_blank">
+      <svg class="bi"><use href="#bi-globe2"/></svg> 日本語教育サイト
+    </a>
+    <a class="side-item" href="https://oikawakohji.com/" data-match="edu"  target="_blank">
+      <svg class="bi"><use href="#bi-globe2"/></svg> 日本語スピーチ協会
+    </a>
+    <div class="side-links">
+      <a href="https://modern.co.jp/privacy-policy/" target="_blank">プライバシーポリシー</a>
+      <a href="https://modern.co.jp/corporate-social-responsibility/" target="_blank">CSRの取り組み</a>
+      <a href="https://modern.co.jp/quality-policy/" target="_blank">品質への取り組み</a>
+      <a href="https://edu.modern.co.jp/supportapp/#contact" target="_blank">お問い合わせ</a>
+      <!--<a href="/legal/commerce.html">特定商取引</a>-->
+    </div>
+          <div class="side-brand footer-logo">
+<a href="https://modern.co.jp/" target="_blank" rel="noopener">
+<img src="/images/logo.webp" alt="MODERN ロゴ">
+</a>
+<div class="copyright">Modern Co.,Ltd. Since 2026</div>
+</div>
+  </nav>
+</aside>

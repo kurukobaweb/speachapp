@@ -1,0 +1,75 @@
+/* css/sidebar.css */
+.sidebar{
+  background:#fff; border:1px solid var(--border); border-radius:12px; position: relative;height: calc(100% - 0px);min-height: 650px;max-height: 750px;
+}
+.side-nav{padding:16px;font-size: 0.9rem;}
+.side-title{font-weight:700; margin:6px 0 8px; color:#334155;}
+.side-section{margin:18px 0 6px; font-weight:700; color:#334155;}
+.side-item{
+  display:flex; align-items:center; gap:10px;
+  padding:10px 12px; border-radius:10px; color:#334155; text-decoration:none;
+}
+.side-item .bi{width:18px; height:18px; fill:currentColor}
+.side-item:hover{background:#f3f4f6}
+.side-item.is-active{background:#eaf0ff; color:#1f3bb3;}
+.side-links{margin-top:16px; display:grid; gap:8px}
+.side-links a{color:#6b7280; text-decoration:none; font-size:12px}
+.side-brand{margin-top:10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    bottom: 5px;
+      right: 0;
+  left: 0;
+}
+.side-brand .logo{font-weight:800; letter-spacing:2px; color:#a78bfa}
+
+.side-brand img {
+    width: 100px;
+    height: auto;
+}
+
+.footer-logo .copyright {
+    font-size: 0.8rem;
+    color: #555;
+    text-align: center;
+}
+
+/* SPではサイドバーを非表示（下部メニューに任せる） */
+@media (max-width:1024px){
+  .sidebar{display:none}
+}
+
+/* === 共通モーダル基盤（既存と重複OK・なければこれで動きます） === */
+.modal{ position:fixed; inset:0; display:none; z-index:11000; background:transparent; }
+.modal.is-open{ display:block; }
+.modal__overlay{ position:absolute; inset:0; background:rgba(0,0,0,.35); backdrop-filter:blur(2px); }
+.modal__dialog{
+  position:relative; margin:6vh auto; width:clamp(320px,92vw,720px);
+  max-height:88vh; background:#fff; border-radius:16px; box-shadow:0 10px 30px rgba(0,0,0,.2);
+  display:flex; flex-direction:column;
+}
+.modal__header{ padding:12px 16px; border-bottom:1px solid #eee; display:flex; justify-content:space-between; align-items:center; }
+.modal__title{ font-size:16px; font-weight:700; }
+.modal__close{ background:transparent; border:0; font-size:20px; line-height:1; cursor:pointer; }
+.modal__body{ padding: 16px 18px; overflow:auto; }
+@media (max-width:768px){
+  .modal__dialog{ margin:10px auto; width:95vw; height:100vh; max-height:none; border-radius:1rem; }
+  .msg-article p {
+    font-size: 0.8rem;
+}
+}
+
+/* === メッセージ一覧の見た目 === */
+.msg-list{ list-style:none; margin:0; padding:0; }
+.msg-item{ padding:12px 14px; border-bottom:1px solid #eee; }
+.msg-row{ display:flex; gap:10px; align-items:flex-start; }
+.msg-avatar{ width:32px; height:32px; border-radius:50%; background:#e5e7eb; flex:0 0 32px; }
+.msg-main{ flex:1; min-width:0; }
+.msg-head{ display:flex; gap:8px; align-items:center; }
+.msg-name{ font-weight:700; }
+.msg-date{ color:#6b7280; font-size:12px; }
+.msg-text{ margin-top:4px; line-height:1.7; word-break:break-word; white-space:pre-wrap; }
+.msg-empty{ padding:24px; text-align:center; color:#6b7280; }

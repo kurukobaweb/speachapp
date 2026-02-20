@@ -1,0 +1,43 @@
+    .detail-wrap{ max-width: 1080px; padding: 0 14px; display: grid; gap: 16px; }
+    .filter-bar{ display:flex; gap:10px; align-items:center; flex-wrap: wrap;}
+    .filter-bar select{ padding:10px 12px; border:1.5px solid var(--border,#e5e7eb); border-radius:12px; font-size:14px; }
+.score-detail-layout{max-width: 1200px; display:grid; grid-template-columns:260px 1fr; gap:16px;  margin: 0 auto; padding: 20px; }
+.achievement-graph{display:flex; gap:16px; align-items:center;flex-direction: column;}
+    .grid-3{ display:grid; grid-template-columns: 1fr 1fr 1fr; gap:16px; }
+
+
+    /* 達成率（円ゲージ） */
+    .gauge{ width:160px; height:160px; }
+    .gauge-bg{ fill:none; stroke:#e5e7eb; stroke-width:14; }
+    .gauge-fg{ fill:none; stroke: var(--focus,#6b8df0); stroke-width:14; stroke-linecap:round; transform:rotate(-90deg); transform-origin:80px 80px; }
+    .gauge-text{ font-size:26px; font-weight:800; fill:#111827; }
+
+    .kvs{ display:flex; gap:6px; }
+    .kvs div{ display:flex; justify-content:space-between;flex-direction: column;align-items: flex-end; border:1px solid #e5e7eb; border-radius:12px; padding:10px 12px; }
+    .kvs label{ color:#6b7280; }
+
+    /* 単純SVGバー */
+    .chart{ width:100%; height:200px; }
+    .legend{ display:flex; gap:10px; font-size:12px; color:#6b7280; }
+    .legend span::before{ content:""; display:inline-block; width:10px; height:10px; margin-right:6px; background:#e5e7eb; vertical-align:baseline; }
+    .legend .l1::before{ background:#bcd2ff; } .legend .l2::before{ background:#8fb3ff; } .legend .l3::before{ background:#6b8df0; }
+    .muted{ color:#6b7280; }
+
+    /* 表 */
+    .mini-table{ width:100%; border-collapse:collapse; }
+    .mini-table th, .mini-table td{ padding:8px; border-bottom:1px solid #e5e7eb; white-space:nowrap; }
+    .mini-table th{ text-align:left; font-size:12px; color:#6b7280; }
+.toolbar-list{
+    margin-left: auto;
+    display: flex;
+    gap: 8px;
+    justify-content: space-between;
+}
+@media (max-width: 1024px){.score-detail-layout{grid-template-columns: auto;}}
+
+    @media (max-width: 640px) {
+    .score-detail-layout {
+        padding-bottom: 120px;
+    }
+    .grid-3{ grid-template-columns: 1fr; } 
+}

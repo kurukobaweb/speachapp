@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>日本語スピーチ判定アプリ｜有料プラン</title>
+
+  <!-- favicon 404 を消したい場合（任意） -->
+  <link rel="icon" href="data:,">
+
+  <!-- 既存共通スタイル -->
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="stylesheet" href="common/header.css"/>
+  <link rel="stylesheet" href="css/maintenance-popup.css"/>
+
+  <!-- billingページ固有（最小） -->
+  <link rel="stylesheet" href="/css/billing.css"/>
+
+  <!-- ★ここで仮のデフォルト値を入れる（後で config.js が上書きしてOK） -->
+  <script>
+    // config.js があるなら、最終的には config.js 側の値を採用させる
+    window.API_BASE  = window.API_BASE  || "http://localhost:8200";
+    window.LOGIN_URL = window.LOGIN_URL || "/login.html";
+  </script>
+
+  <!-- config.js が API_BASE を環境で切替するなら head で読み込む（推奨） -->
+  <script type="module" src="/js/config.js"></script>
+
+  <!-- 既存：メンテポップアップをこのページでも使うなら -->
+  <script src="js/maintenance-popup.js" defer></script>
+
+  <!-- 共通ヘッダー（DOM構築後に動かす） -->
+  <script type="module" src="/common/header.js" defer></script>
+
+  <!-- billing は最後（API_BASE確定後に読む） -->
+  <script type="module" src="/js/billing.js" defer></script>
+</head>
+
+<body>
+<noscript>
+  <meta http-equiv="refresh" content="0;url='https://preview.modern.co.jp/oikawaapp/oikawashikiapp/login.html?PageSpeed=noscript'"/>
+  <style>table,div,span,font,p{display:none}</style>
+  <div style="display:block">
+    Please click
+    <a href="https://preview.modern.co.jp/oikawaapp/oikawashikiapp/login.html?PageSpeed=noscript">here</a>
+    if you are not redirected within a few seconds.
+  </div>
+</noscript>
+
+<!-- 共通ヘッダー -->
+<div id="siteHeader"></div>
+
+<!-- 背景（既存デザインに合わせる） -->
+<div class="page-bg"></div>
+
+<main class="container billing">
+  <section class="card billing__head">
+    <h1 class="billing__title">有料プラン登録</h1>
+    <p class="billing__desc">
+      プランを選択して「支払いへ進む」を押すと、Stripeの決済画面へ移動します。
+    </p>
+
+    <div id="statusBox" class="billing__status" role="status" aria-live="polite">
+      <span class="billing__spinner" aria-hidden="true"></span>
+      <div>
+        <div class="billing__statusTitle">読み込み中…</div>
+        <div class="billing__statusSub">ユーザー情報とプランを確認しています</div>
+      </div>
+    </div>
+
+    <div id="errorBox" class="alert alert--danger" hidden>
+      <div class="alert__title">エラー</div>
+      <div id="errorText" class="alert__text"></div>
+    </div>
+
+    <div id="successBox" class="alert alert--success" hidden>
+      <div class="alert__title">案内</div>
+      <div id="successText" class="alert__text"></div>
+    </div>
+
+    <div class="billing__actions">
+      <button id="btnPortal" class="btn btn--sub" type="button" hidden>請求管理</button>
+      <button id="btnLogout" class="btn" type="button">ログアウト</button>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="billing__toolbar">
+      <!-- 年額なし（固定表示） -->
+      <div class="seg" aria-label="請求周期">
+        <span class="seg__btn is-active" aria-selected="true" style="cursor:default;">月額</span>
+      </div>
+
+      <button id="btnReload" class="btn btn--sub" type="button">再読み込み</button>
+    </div>
+
+    <div id="plansGrid" class="billing__plans" aria-live="polite"></div>
+
+    <div class="billing__note">
+      <ul>
+        <li>決済の反映は Webhook → DB 更新 → 画面反映（/api/me）です。</li>
+        <li>反映に数秒〜数十秒かかる場合があります。</li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<!-- billingページでは login.js/toggleeye.js は不要：読み込まない -->
+</body>
+</html>

@@ -1,0 +1,161 @@
+.plans {
+  display: grid;
+  gap: 12px;
+  margin: 16px 0;
+}
+.plan {
+  text-align: left;
+  padding: 14px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(0,0,0,.12);
+  background: #fff;
+  cursor: pointer;
+}
+.plan-title { font-weight: 700; font-size: 16px; }
+.plan-desc { opacity: .75; margin-top: 4px; font-size: 13px; }
+
+.auth-card
+{width: min(560px, 92vw);
+    background: var(--card);
+    border-radius: 28px;
+    box-shadow: var(--shadow);
+    padding: 36px 36px 28px;
+    text-align: center;
+}
+.auth-wrap{
+    min-height: calc(100vh - 92px);
+    display: grid;
+    place-items: center;
+    padding: 48px 16px;
+}
+
+/* ===== ChatGPT風：有料プランカード ===== */
+.pricing-card--business{
+  position: relative;
+  border-radius: 18px;
+  border: 1px solid rgba(99, 102, 241, .45);
+  background: linear-gradient(180deg, rgba(99,102,241,.10), rgba(99,102,241,.04));
+  box-shadow: 0 10px 30px rgba(0,0,0,.06);
+  padding: 22px 20px;
+}
+
+/* 右上の小バッジっぽく */
+.badge--recommend{
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  border-radius: 999px;
+  padding: 6px 10px;
+  font-size: 12px;
+  font-weight: 700;
+  color: rgba(99, 102, 241, 1);
+  background: rgba(99, 102, 241, .12);
+  border: 1px solid rgba(99, 102, 241, .20);
+}
+
+/* タイトル */
+.pricing-card--business .pricing-title{
+  margin: 0 0 10px;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: .2px;
+}
+
+/* 価格：大きく */
+.pricing-price--big{
+  margin: 6px 0 6px;
+  display:flex;
+  align-items: baseline;
+  gap: 6px;
+  justify-content: center;
+}
+.pricing-price--big .yen{
+  font-size: 18px;
+  opacity: .55;
+  font-weight: 700;
+}
+.pricing-price--big{
+  font-size: 54px;
+  font-weight: 900;
+  line-height: 1.0;
+}
+.pricing-price--big .per{
+  font-size: 14px;
+  opacity: .7;
+  font-weight: 700;
+  margin-left: 6px;
+}
+
+/* サブコピー */
+.pricing-sub{
+  margin: 10px 0 14px;
+  font-size: 14px;
+  font-weight: 700;
+  opacity: .9;
+}
+
+/* 機能リスト（アイコン＋テキスト） */
+.pricing-features{
+  list-style: none;
+  padding: 0;
+  margin: 0 0 18px;
+  display: grid;
+  gap: 10px;
+}
+.pricing-features li{
+  display:flex;
+  align-items:flex-start;
+  gap: 10px;
+  font-size: 14px;
+  font-weight: 700;
+}
+.pricing-features .fi{
+  width: 22px;
+  height: 22px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  border-radius: 8px;
+  color: rgba(99, 102, 241, 1);
+  background: rgba(99, 102, 241, .12);
+  border: 1px solid rgba(99, 102, 241, .18);
+  flex: 0 0 22px;
+}
+.pricing-features .fi svg{
+  width: 16px;
+  height: 16px;
+}
+
+/* ボタン全幅 */
+.btn--full{
+  width: 100%;
+  justify-content: center;
+      display: inline-block;
+    border: 0;
+    color: #fff;
+    cursor: pointer;
+    background: linear-gradient(180deg, var(--primary-1), var(--primary-2));
+    padding: 16px 28px;
+    border-radius: 999px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    justify-content: center;
+}
+
+/* 注意書き */
+.pricing-note{
+  margin-top: 12px;
+  font-size: 12px;
+  opacity: .75;
+  line-height: 1.5;
+}
+
+.btn-outline {
+
+    margin-top: 15px;
+}
+
+#backProfile {
+  position: relative;
+  z-index: 10;
+}

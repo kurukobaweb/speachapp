@@ -1,0 +1,247 @@
+/* ===== テーマ一覧の見た目調整 ===== */
+.themes{
+      position: relative;          /* ★ 子要素をabsolute配置できるようにする */
+
+  height: 480px;        /* ←固定値、好みに応じて調整 */
+  overflow-y: auto;     /* はみ出したカードはスクロール */
+}
+/* フィルタバー */
+.themes .filterbar{
+  display:flex; gap:5px; align-items:center; justify-content:flex-end;
+  padding:12px 14px; border-bottom:1px solid #f2f4f8;
+}
+.themes .filterbar select{
+  /*appearance:none;*/
+  padding:11px 1px;
+  border:1.5px solid var(--border);
+  border-radius:12px; background:#fff;
+  font-size:13px; color:#374151;
+}
+.themes .filterbar .btn{ white-space:nowrap; }
+
+/* テーブル */
+.theme-table{
+  width:100%; border-collapse:separate; border-spacing:0; font-size:14px;
+}
+.theme-table thead th{
+  text-align:left; font-weight:700; color:#6b7280;
+  padding:12px 12px; background:#f8fafc; border-top:1px solid #eef2f7;
+}
+.theme-table thead th:first-child{ border-top-left-radius:12px; }
+.theme-table thead th:last-child{ border-top-right-radius:12px; }
+
+.theme-table tbody td{
+  padding:12px; border-top:1px solid #eef2f7; color:#1f2937;
+}
+.theme-table tbody tr:hover{
+  background:#fafafa; cursor:pointer;
+}
+.theme-table tbody tr:first-child td{ border-top:0; }
+
+/* カラム幅の軽い整形（崩れ防止） */
+.col-lv{ width:84px; white-space:nowrap; color:#374151; font-weight:600; }
+.col-no{ width:70px; text-align:right; color:#475569; }
+.col-type{ width:120px; color:#475569; }
+.col-q{ width:auto; }
+
+/* テーマ一覧テーブル */
+.theme-table {
+  table-layout: fixed;   /* 固定レイアウト */
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* 各列の幅指定 */
+.theme-table th:nth-child(1),
+.theme-table td:nth-child(1) {
+  width: 265px;   /* LV列 */
+  text-align: center;
+}
+.theme-table th:nth-child(2),
+.theme-table td:nth-child(2) {
+  width: 40px;   /* No.列 */
+  text-align: center;
+}
+
+.theme-table th:nth-child(3),
+.theme-table td:nth-child(3) {
+  width: 180px;   /* タイプ列 */
+  text-align: center;
+}
+
+.theme-table th:nth-child(4),
+.theme-table td:nth-child(4) {
+  /* お題列は残り幅を全部使う */
+  width: auto;
+  word-wrap: break-word;
+}
+
+/* --- 追加 CSS --- */
+.col-q .qtext {
+  line-height: 1.6;
+  /*max-height: calc(1.6em * 2); /* ★2行分だけ表示 */
+  overflow: hidden;
+  position: relative;
+  display: block;
+  word-wrap: break-word;
+}
+.col-q .q-ellipsis {
+  position: absolute;
+  right: 0; bottom: 0;
+  padding-left: 4px;
+  background: linear-gradient(90deg, transparent, #fff 35%);
+}
+
+
+/* ページャ */
+#pagination{
+  display:flex; 
+  align-items:center; 
+  justify-content:center; 
+  gap:8px;
+  padding:10px 0 14px;
+    position: absolute;          /* ★ セクションの中で絶対配置 */
+  bottom: 5px;                /* 下から少し上に */
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/*.paginationall{
+bottom: auto !important;
+
+}*/
+
+.themeshome {
+    height: 650px;}
+
+.btn-page{
+  border:1.5px solid var(--border); background:#fff; color:#111827;
+  width:36px; height:36px; border-radius:10px; cursor:pointer;
+}
+.btn-page:disabled{ opacity:.45; cursor:not-allowed; }
+.page-indicator{ color:#6b7280; min-width:64px; text-align:center; }
+
+
+
+
+/* モバイル：テーブルを読みやすく */
+@media (max-width: 560px){
+
+.themes {
+    height: 610px;
+}
+
+.themes .filterbar select{
+    padding: 10px 3px;
+}
+  .themes .filterbar{ flex-wrap:wrap; justify-content: flex-start; gap:8px; }
+  .theme-table thead{ display:none; }              /* 見出しを隠す */
+  .theme-table tbody td{ display:block; padding:8px 12px; border-top:0; }
+  .theme-table tbody tr{
+    border:1px solid #eef2f7; border-radius:12px; margin:10px 0; overflow:hidden;
+    box-shadow: var(--shadow);
+    display: flex;
+        align-items: center;
+        /*flex-wrap: wrap;*/
+  }
+
+.theme-table th:nth-child(2), .theme-table td:nth-child(2) {
+    text-align: left;
+}
+
+.theme-table th:nth-child(3), .theme-table td:nth-child(3) {
+    width: 180px;
+    text-align: left;
+}
+
+  /*.col-lv::before{ content:"LV："; color:#64748b; margin-right:6px; }
+  .col-no::before{ content:"No.："; color:#64748b; margin-right:6px; }
+  .col-type::before{ content:"タイプ："; color:#64748b; margin-right:6px; }
+  .col-q::before{ content:"お題："; color:#64748b; margin-right:6px; }*/
+  .col-no, .col-type, .col-lv{ width:auto; text-align:left; }
+  /*.paginationall{
+bottom: auto !important;
+
+}*/
+.themeshome {
+    min-height: 550px;}
+
+}
+@media (max-width: 768px) {
+
+  /* 行（tr）を3段カードとして扱う */
+  #promptList tr.finder-row {
+    display: grid;
+    grid-template-columns: auto auto 1fr;
+    grid-template-rows: auto auto auto; /* 1行目 / 2行目 / 3行目 */
+    row-gap: 6px;
+    column-gap: 1px;
+
+    padding: 10px 12px;
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  /* tdをテーブル表示から解放 */
+  #promptList tr.finder-row > td {
+    display: block;
+    padding: 0;
+    border: 0;
+  }
+
+  /* ===== 1行目 ===== */
+
+  /* LV */
+  #promptList td.col-lv {
+    grid-column: 1;
+    grid-row: 1;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  /* NO */
+  #promptList td.col-no {
+    grid-column: 2;
+    grid-row: 1;
+    white-space: nowrap;
+    opacity: 0.85;
+  }
+
+  /* ===== 2行目 ===== */
+
+  /* TYPE（1列目から横断） */
+  #promptList td.col-type {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    font-size: 0.9em;
+    color: #374151;
+    white-space: nowrap;
+  }
+
+  /* ===== 3行目 ===== */
+
+  /* QUESTION（全文幅・line-clamp適用対象） */
+  #promptList td.col-q {
+    grid-column: 1 / -1;
+    grid-row: 3;
+    line-height: 1.45;
+  }
+  .theme-table th:nth-child(1), .theme-table td:nth-child(1) {
+    text-align: left;
+}
+
+
+/* col-q：強制1行 + …（clampAllQs の inline を上書き） */
+#promptList td.col-q{
+  display: block !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  min-width: 0 !important;
+  max-width: 100% !important;
+
+  /* 以前の multi-line clamp を殺す */
+  -webkit-line-clamp: unset !important;
+  -webkit-box-orient: unset !important;
+}
+
+}

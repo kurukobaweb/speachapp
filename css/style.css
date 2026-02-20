@@ -1,0 +1,196 @@
+/* ==== 背景 ==== */
+.page-bg{
+  position:fixed; inset:0;
+  background:var(--bg);
+  z-index:-1;
+}
+
+/* ==== ログインカード ==== */
+.login-wrap{
+  min-height:calc(100vh - 92px);
+  display:grid; place-items:center;
+  padding:48px 16px;
+}
+.login-card{
+  width:min(560px, 92vw);
+  background:var(--card);
+  border-radius:28px;
+  box-shadow:var(--shadow);
+  padding:36px 36px 28px;
+  text-align:center;
+}
+.login-title{
+  margin:8px 0 24px;
+  font-size:28px; font-weight:800; letter-spacing:0.2px;
+}
+
+/* 入力 */
+.form-group{margin:16px 0}
+.input-wrapper{position:relative}
+input[type="text"], input[type="password"], input[type="email"]{
+  width:100%; padding:16px 20px;
+  border:1.5px solid var(--border);
+  border-radius:999px;
+  font-size:16px; outline:none; background:#fff;
+}
+
+
+input::placeholder{color:#b1b8c8}
+input:focus{border-color:var(--focus); box-shadow:0 0 0 3px rgba(91,140,255,0.15)}
+.toggle-eye{
+  position:absolute; right:14px; top:50%; transform:translateY(-50%);
+  width:34px; height:34px; border:0; background:transparent; cursor:pointer;
+}
+.toggle-eye[aria-pressed="true"]::before{opacity:0.9}
+
+/* 補助リンク */
+.helper{color:var(--muted); margin:8px 0 16px; line-height:1.6;}
+.helper.small{font-size:14px}
+.link{color:#111827; text-underline-offset:2px}
+.link:hover{opacity:.85}
+
+/* ボタン */
+.btn-primary{
+  width:50%;
+  border:0;
+  padding:16px 20px;
+  border-radius:999px;
+  cursor:pointer;
+  font-weight:800;
+  font-size:16px;
+  background:linear-gradient(180deg, var(--primary-1), var(--primary-2));
+  color:#fff;
+  transition:transform .02s ease, filter .15s ease;
+}
+.btn-primary:active{transform:translateY(1px)}
+.btn-outline{
+  border:1.5px solid var(--border); background:#fff; color:#111827;
+  padding:10px 16px; border-radius:12px; cursor:pointer;
+}
+.error{color:#d03939; min-height:1.2em;}
+
+/* TEST マイクボタン */
+.test-area{margin:22px 0 8px; display:flex; justify-content:center;}
+.btn-round{
+  width:120px; height:120px; border-radius:50%;
+  background:#fff; border:2px solid var(--primary-1);
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap:6px; cursor:pointer;
+}
+.mic-icon{font-size:28px; line-height:1;}
+.mic-label{letter-spacing:2px}
+
+/* オーバーレイ */
+.overlay{
+  position:fixed; inset:0; background:rgba(0,0,0,.45);
+  display:flex; align-items:center; justify-content:center;
+  padding:20px;
+}
+.overlay-card{
+  width:min(720px, 96vw);
+  background:#fff; border-radius:20px; padding:20px 20px 24px;
+  box-shadow:var(--shadow);
+}
+.overlay-close{
+  position:absolute; right:22px; top:16px; font-size:18px; background:transparent; border:0; cursor:pointer;
+}
+.overlay-actions{display:flex; gap:10px; margin:10px 0 14px}
+.mic-level{height:8px; background:#f1f5f9; border-radius:999px; overflow:hidden}
+#micLevelBar{height:100%; width:0; background:linear-gradient(90deg, var(--primary-1), var(--primary-2))}
+.transcript{min-height:2em; margin-top:8px;}
+
+/* === マイクテストモーダル === */
+.mic-card {
+  position: relative;
+  width: min(420px, 92vw);
+  padding: 28px 24px 32px;
+  border-radius: 20px;
+  text-align: center;
+}
+.mic-title {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0 0 12px;
+  color: #374151;
+}
+.mic-desc {
+  font-size: 15px;
+  margin: 0 0 20px;
+  color: #4b5563;
+}
+.mic-actions {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+.btn-mic {
+  min-width: 110px;
+  padding: 12px 20px;
+  border-radius: 24px;
+  font-weight: 700;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background .2s, color .2s, border-color .2s;
+}
+.btn-mic.start {
+  background: linear-gradient(180deg, #6ea2ff, #6b8df0);
+  color: #fff;
+  border: none;
+}
+.btn-mic.start:disabled {
+  opacity: .5;
+  cursor: not-allowed;
+}
+.btn-mic.stop {
+  background: #fff;
+  border: 1.5px solid #6ea2ff;
+  color: #6ea2ff;
+}
+.btn-mic.stop:disabled {
+  opacity: .5;
+  border-color: #cbd5e1;
+  color: #cbd5e1;
+}
+
+/* プログレスバー */
+.mic-bar {
+  width: 100%;
+  height: 16px;
+  background: #fff;
+  border: 1.5px solid #d1d5db;
+  border-radius: 999px;
+  overflow: hidden;
+}
+#micLevelBar {
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(90deg, #6ea2ff, #6b8df0);
+  transition: width 0.2s ease;
+}
+.mic-status {
+  font-size: 13px;
+  margin-top: 14px;
+  color: #6b7280;
+}
+
+/* アクセシビリティ */
+.visually-hidden{
+  position:absolute!important; clip:rect(1px,1px,1px,1px);
+  width:1px; height:1px; overflow:hidden; white-space:nowrap; border:0; padding:0; margin:-1px;
+}
+
+/* ==== モバイル調整 ==== */
+@media (max-width: 768px){
+  .login-wrap{min-height:100vh; padding:24px 12px}
+  .login-card{
+    padding:28px 22px 22px;
+    border-radius:36px;
+  }
+  .login-title{font-size:36px; margin-top:12px}
+  input[type="text"], input[type="password"]{padding:18px 22px; font-size:18px}
+  .btn-primary{padding:18px 22px; font-size:18px}
+  .btn-round{width:118px; height:118px}
+  /* ヘッダーは非表示（PC共通パーツのみ使う） */
+  .site-header{display:none}
+}

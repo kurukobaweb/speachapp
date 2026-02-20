@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>日本語スピーチ判定アプリアプリ</title>
+    <link rel="stylesheet" href="/style.css">
+    <script type="module" src="https://unpkg.com/wanakana"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/kuromoji@0.1.2/build/kuromoji.min.js"></script>
+</head>
+<body>
+<div class="modal-bg" id="modalBg" style="display:none;">
+  <div class="modal-content">
+    <h2>設定</h2>
+    <div class="setting-row">
+      <span>レベル</span>
+      <select id="setting-level">
+        <option value="初級">初級</option>
+        <option value="中級">中級</option>
+        <option value="上級">上級</option>
+        <option value="超級">超級</option>
+        <option value="面接対応">面接対応</option>
+        <option value="10秒スピーチチャレンジ">10秒スピーチチャレンジ</option>
+        <option value="小中学生のための60秒スピーチ">小中学生のための60秒スピーチ</option>
+        <option value="大学生のための就活面接40秒スピーチ">大学生のための就活面接40秒スピーチ</option>
+      </select>
+    </div>
+
+    <div class="setting-row">
+      <span>タイプ</span>
+      <select id="setting-type">
+        <option value="二択">二択</option>
+        <option value="単体">単体</option>
+        <option value="なし">なし</option>
+        <option value="自分のこと">自分のこと</option>
+        <option value="学校生活・友だち">学校生活・友だち</option>
+        <option value="家族・家のこと">家族・家のこと</option>
+        <option value="趣味・好きなもの">趣味・好きなもの</option>
+        <option value="社会・世界・地域">社会・世界・地域</option>
+        <option value="夢・将来">夢・将来</option>
+        <option value="心・考え・生き方">心・考え・生き方</option>
+        <option value="チャレンジ・希望">チャレンジ・希望</option>
+        <option value="基本情報・自己紹介">基本情報・自己紹介</option>
+        <option value="学業・研究内容">学業・研究内容</option>
+        <option value="経験・エピソード">経験・エピソード</option>
+        <option value="価値観・考え方">価値観・考え方</option>
+        <option value="将来・キャリアビジョン">将来・キャリアビジョン</option>
+        <option value="時事・一般常識・その他">時事・一般常識・その他</option>
+      </select>
+    </div>
+    <div class="setting-row">
+      <span>出題方式</span>
+      <select id="setting-mode">
+        <option value="random">ランダム</option>
+        <option value="sequential">順番通り</option>
+      </select>
+    </div>
+    <div class="setting-row">
+      <span>設定時間</span>
+      <select id="setting-max-time">
+        <option value="10">10秒</option>
+        <option value="40">40秒</option>
+        <option value="60" selected>60秒</option>
+        <option value="90">90秒</option>
+        <option value="120">120秒</option>
+      </select>
+    </div>
+    <div class="setting-row">
+      <span>時間表示</span>
+      <select id="setting-timer">
+        <option value="countdown">カウントダウン</option>
+        <option value="countup">カウントアップ</option>
+      </select>
+    </div>
+    <div class="setting-row">
+      <span>強制終了</span>
+      <select id="setting-force">
+        <option value="on">あり</option>
+        <option value="off">なし</option>
+      </select>
+    </div>
+    <div class="setting-row">
+      <span>文字起こし</span>
+      <select id="setting-transcript">
+        <option value="on">あり</option>
+        <option value="off">なし</option>
+      </select>
+    </div>
+    <div class="modal-btns">
+      <button id="btnSettingSave" class="apply-btn">保存</button>
+      <button id="btnSettingCancel" class="apply-btn cancel">キャンセル</button>
+    </div>
+  </div>
+</div>
+<script>window.API_BASE = `${location.protocol}//${location.hostname}:8200`;</script>
+
+<script type="module" src="/js/config.js"></script>
+<script type="module" src="/js/login.js"></script>
+  <script type="module" src="/js/script.js"></script>
+</body>
+</html>

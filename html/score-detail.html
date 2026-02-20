@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>スコア詳細</title>
+
+  <!-- 共通 -->
+  <link rel="stylesheet" href="../common/header.css">
+  <link rel="stylesheet" href="../common/sidebar.css">
+  <link rel="stylesheet" href="../common/bottom-nav.css">
+      <link rel="stylesheet" href="../css/setting.css">
+  <!-- 既存の score.css を再利用（カード・表・モーダル等の見た目） -->
+     <link rel="stylesheet" href="../css/style.css">
+
+  <link rel="stylesheet" href="../css/score.css">
+    <link rel="stylesheet" href="../css/score-detail.css">
+
+
+</head>
+<body>
+  <div id="siteHeader" data-header-src="../common/header.html"></div>
+  <div class="page-bg"></div>
+    <!-- サイドバー（PC） -->
+       <div class="score-detail-layout">
+    <div id="siteSidebar" data-sidebar-src="../common/sidebar.html"></div>
+
+  <main class="detail-wrap">
+        <section class="card toolbar">
+      <!--<h3 class="card-title">ツール</h3>-->
+      <div class="toolbar-list">
+
+      <button id="btnBackToList" class="btn-outline">↩︎</button>
+
+  <button id="btnExportDetailJson" class="btn-outline">JSONで書き出し</button>
+</div>
+
+    </section>
+    <!-- フィルタ -->
+    <section class="card">
+      <h3 class="card-title">フィルタ</h3>
+      <div class="filter-bar">
+        <select id="fLevel">
+<option value="">全てのLV</option>        </select>
+        <select id="fType">
+<option value="">全てのタイプ</option>        </select>
+          <button id="btnResetDetail" class="btn-outline">リセット</button><!-- ★ 追加 -->
+
+      </div>
+
+
+
+    </section>
+
+    <section class="grid-3">
+      <!-- 1) 挑戦率 -->
+      <section class="card">
+        <h3 class="card-title">挑戦率</h3>
+        <div class="achievement-graph">
+          <svg class="gauge" viewBox="0 0 160 160" aria-label="達成率">
+            <circle class="gauge-bg" cx="80" cy="80" r="64"></circle>
+            <circle class="gauge-fg" cx="80" cy="80" r="64" stroke-dasharray="0 999"></circle>
+            <text class="gauge-text" x="80" y="90" text-anchor="middle">--%</text>
+          </svg>
+          <div class="kvs">
+            <div><label>挑戦テーマ数</label><span id="doneCnt">--</span></div>
+            <div><label>総テーマ数</label><span id="totalCnt">--</span></div>
+          </div>
+        </div>
+        <p class="muted" style="margin-top:8px;">※ 選択中のLV/タイプで集計</p>
+      </section>
+
+      <!-- 2) 点数 -->
+      <section class="card">
+        <h3 class="card-title">点数</h3>
+        <svg class="chart" id="scoreChart" viewBox="0 0 400 200" role="img" aria-label="点数分布"></svg>
+        <div class="legend"><span class="l1">0–59</span><span class="l2">60–79</span><span class="l3">80–100</span></div>
+        <table class="mini-table" style="margin-top:8px;">
+          <thead><tr><th>平均</th><th>最高</th><th>件数</th></tr></thead>
+          <tbody><tr><td id="avgScore">--</td><td id="maxScore">--</td><td id="cntScore">--</td></tr></tbody>
+        </table>
+      </section>
+
+      <!-- 3) 学習時間 -->
+      <section class="card">
+        <h3 class="card-title">学習時間</h3>
+        <svg class="chart" id="timeChart" viewBox="0 0 400 200" role="img" aria-label="直近7日 学習時間"></svg>
+        <table class="mini-table" style="margin-top:8px;">
+          <thead><tr><th>合計</th><th>平均（1回あたり）</th><th>件数</th></tr></thead>
+          <tbody><tr><td id="sumTime">--</td><td id="avgTime">--</td><td id="cntTime">--</td></tr></tbody>
+        </table>
+      </section>
+    </section>
+  </main></div>
+  <!-- ボトムメニュー（SP） -->
+  <div id="siteBottomNav" data-bottom-src="../common/bottom-nav.html"></div>
+<!-- 設定モーダル（setting.js が注入） 
+<div id="settingModal"></div>-->
+<script>window.API_BASE = `${location.protocol}//${location.hostname}:8200`;</script>
+
+<script type="module" src="../js/config.js"></script>
+<script type="module" src="../js/api.js"></script>
+  <script type="module" src="../common/header.js" defer></script>
+  <script type="module" src="../common/sidebar.js" defer></script>
+<script type="module" src="../common/bottom-nav-loader.js" defer></script>
+<script type="module" src="../common/filter-options.js" defer></script>
+<script type="module" src="../js/setting.js" defer></script>
+
+  <script type="module" src="../js/score-detail.js" defer></script>
+
+</body>
+</html>

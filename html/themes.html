@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>日本語スピーチ判定アプリ｜テーマ一覧</title>
+
+  <!-- 共通CSS -->
+  <link rel="stylesheet" href="../common/header.css">
+  <link rel="stylesheet" href="../common/sidebar.css">
+  <link rel="stylesheet" href="../common/bottom-nav.css">
+
+  <!-- テーマ一覧ページ専用CSS -->
+     <link rel="stylesheet" href="../css/home.css">
+  <link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/setting.css">
+  <link rel="stylesheet" href="../css/themes.css">
+  
+</head>
+<body>
+  <!-- 共通ヘッダー -->
+  <div id="siteHeader" data-header-src="../common/header.html"></div>
+
+  <div class="page-bg"></div>
+
+  <div class="home-layout" style="max-width:1200px;">
+    <!-- 共通サイドバー -->
+  <div id="siteSidebar" data-sidebar-src="../common/sidebar.html"></div>
+
+    <!-- メイン -->
+    <main class="home-main">
+<section class="card themes themeshome">
+        <h2 class="card-title">テーマ一覧</h2>
+
+        <!-- ↓↓↓ menu.html のモーダル内テーブルを“そのまま”常設に ↓↓↓ -->
+        <div class="filterbar">
+<select id="filterLevel" data-filter="level"><option value="">全てのLV</option></select>
+<select id="filterType"  data-filter="type"><option value="">全てのタイプ</option></select>
+
+          <button id="filterReset" type="button" class="btn btn-outline">リセット</button>
+        </div>
+
+        <div class="table-wrap">
+          <table class="finder-table theme-table" style="width:100%;">
+            <thead>
+              <tr><th>LV</th><th>No.</th><th>タイプ</th><th>お題</th></tr>
+            </thead>
+            <tbody id="promptList"></tbody>
+          </table>
+        </div>
+
+        <div id="pagination" class="paginationall"></div>
+      </section>
+
+      <!-- hidden要素：menu.js の既存フックを生かすために配置 -->
+      <button id="btnPromptList" style="display:none;"></button>
+      <div id="promptListModal" style="display:block; position:static; background:transparent; padding:0;">
+        <div id="promptListBox" style="padding:0; border:none; box-shadow:none; position:static;">
+          <!-- close ボタンは不要だが、menu.js が参照するのでダミー残し -->
+          <button id="closePromptList" style="display:none;"></button>
+        </div>
+      </div>
+    </main>
+  </div>
+
+<!-- SPボトムナビ（スマホのみ表示） -->
+<div id="siteBottomNav" data-bottom-src="../common/bottom-nav.html"></div>
+<script>window.API_BASE = `${location.protocol}//${location.hostname}:8200`;</script>
+
+<script type="module" src="../js/config.js"></script>
+<script type="module" src="../js/api.js"></script>
+  <!-- JS -->
+  <script type="module" src="../common/header.js" defer></script>
+  <script type="module" src="../common/sidebar.js" defer></script>
+    <script type="module" src="../common/bottom-nav-loader.js" defer></script>
+<script type="module" src="../common/filter-options.js" defer></script>
+
+  <!-- 既存の処理を流用 -->
+  <script type="module" src="../js/setting.js" defer></script>
+  <script type="module" src="../js/themes.js" defer></script>
+  <!-- ページ専用ブリッジ -->
+  <script type="module" src="../js/themes-bridge.js" defer></script>
+</body>
+</html>
